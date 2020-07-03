@@ -8,7 +8,7 @@ if(isset($_POST['save_task'])){                                                 
     $description = $_POST['description'];                                               #Guardar la descripción en una variable 
 
     $query = "INSERT INTO task(title, description) Values ('$title', '$description')";  #Variable que guarda la consulta 
-    $result = mysqli_query($conection, $query);                                         #Realiza la consulta de query a la base de datos
+    $result = mysqli_query($connection, $query);                                         #Realiza la consulta de query a la base de datos
 
     if(!$result){                                                                       #Si result tiene algo
         die("Query Failed");                                                            #Imprime un string y termina el SCRIPT
