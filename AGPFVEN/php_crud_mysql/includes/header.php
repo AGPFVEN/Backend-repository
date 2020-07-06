@@ -22,6 +22,6 @@
 <body>
 <nav class = "navbar navbar-dark bg-dark">
 <div class = "container">
-<a href = "index.php" class="navbar-brand">AGPFVEN CRUD (PHP MySQL)</a>
+<a href = "select_table.php" class="navbar-brand">AGPFVEN CRUD (PHP MySQL)</a>
 </div>
 </nav>
