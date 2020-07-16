@@ -7,3 +7,4 @@
         '',
         'php_mysql_crud_database'
     );
+?>
