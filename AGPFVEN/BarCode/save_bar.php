@@ -2,20 +2,22 @@
 
 include("db.php");
 
-if(isset($POST['save_bar']))
+if(isset($_POST['save_bar']))
 {
-    $barcode = $POST['cable-name'];
+    $action = $_POST['action'];
+    $barcode = $_POST['cable-name'];
 
-    $query = "INSERT INTO cable-record(model, action) Values ('$barcode') ";
+    $query = "INSERT INTO cable(model, action) Values ('$barcode', '$action')";
     $result = mysqli_query($connection, $query);
 
     if(!$result)
     {
         die("Query Failed");
-        echo"fail";
     }
 
-    echo"done" .$POST['cable-name'];
+    $SESSION['message'] = 'cable well updated';
+    $SESSION['message_type'] = 'success';
+    $SESSION['remember_action'] = $action;
 
     header("Location: index.php"); 
 }

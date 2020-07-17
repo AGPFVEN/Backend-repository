@@ -12,6 +12,14 @@
                 <form action="save_bar.php" method="POST">
 
                     <div class="form-group">
+                        <select class="custom-select" name="action" id="inputGroupSelect01">
+                            <option selected>Choose...</option>
+                            <option value="add">Add</option>
+                            <option value="substract">Substract</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <textarea name="cable-name" rows="2" class="form-control" placeholder="Task Description"></textarea>
                     </div>
 
