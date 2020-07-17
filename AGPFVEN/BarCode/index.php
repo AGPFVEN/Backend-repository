@@ -7,13 +7,36 @@
 
         <div class="col-md-4">
 
-            <div class="card card-body">
+            <?php if(isset($_SESSION['message'])) 
+            { ?>
 
+                <div class="alert alert-<?=$_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
+
+                    <?= $_SESSION['message'] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+            } ?>
+
+            <div class="card card-body">
                 <form action="save_bar.php" method="POST">
 
                     <div class="form-group">
-                        <select class="custom-select" name="action" id="inputGroupSelect01">
-                            <option selected>Choose...</option>
+                        <select class="custom-select" name="action" id="inputGroupSelect01"
+
+                            <?php if(isset($SESSION['remember_action']))
+                            { ?>
+                                value=<?php $SESSION['remember_action'] ?>>
+                                <option selected><?php $SESSION['remember_action'] ?></option>
+                                <?php session_unset();
+                            } 
+                            else
+                            { ?>
+                                <option selected>Chose...</option>
+                                <?php
+                            } ?>
                             <option value="add">Add</option>
                             <option value="substract">Substract</option>
                         </select>
