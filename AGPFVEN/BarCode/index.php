@@ -34,6 +34,7 @@
                             } 
                             else
                             { ?>
+                                >
                                 <option selected>Chose...</option>
                                 <?php
                             } ?>
