@@ -18,7 +18,8 @@
                     </button>
 
                 </div>
-            } ?>
+                <?php
+            }?>
 
             <div class="card card-body">
                 <form action="save_bar.php" method="POST">
@@ -29,13 +30,13 @@
                             <?php if(isset($SESSION['remember_action']))
                             { ?>
                                 value=<?php $SESSION['remember_action'] ?>>
-                                <option selected><?php $SESSION['remember_action'] ?></option>
+                                <option selected> <?php $SESSION['remember_action'] ?></option>
                                 <?php session_unset();
                             } 
                             else
                             { ?>
-                                >
-                                <option selected>Chose...</option>
+                                
+                                <option  value=0 selected>Chose...</option>
                                 <?php
                             } ?>
                             <option value="add">Add</option>
