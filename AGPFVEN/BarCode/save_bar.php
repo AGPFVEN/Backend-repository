@@ -15,9 +15,9 @@ if(isset($_POST['save_bar']))
         die("Query Failed");
     }
 
-    $SESSION['message'] = 'cable well updated';
-    $SESSION['message_type'] = 'success';
-    $SESSION['remember_action'] = $action;
+    $_SESSION['message'] = 'cable well updated';
+    $_SESSION['message_type'] = 'success';
+    $_SESSION['remember_action'] = $action;
 
     header("Location: index.php"); 
 }

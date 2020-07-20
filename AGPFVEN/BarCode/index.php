@@ -27,16 +27,18 @@
                     <div class="form-group">
                         <select class="custom-select" name="action" id="inputGroupSelect01"
 
-                            <?php if(isset($SESSION['remember_action']))
+                            <?php if(isset($_SESSION['remember_action']))
                             { ?>
-                                value=<?php $SESSION['remember_action'] ?>>
-                                <option selected> <?php $SESSION['remember_action'] ?></option>
+                                >
+                                <option selected value=<?php $_SESSION['remember_action']?> > <?php $_SESSION['remember_action'] ?></option>
                                 <?php session_unset();
                             } 
                             else
                             { ?>
                                 
-                                <option  value=0 selected>Chose...</option>
+                                >
+                                <option selected>Chose...</option>
+
                                 <?php
                             } ?>
                             <option value="add">Add</option>
