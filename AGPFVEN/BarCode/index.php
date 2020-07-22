@@ -7,6 +7,7 @@
 
         <div class="col-md-4">
 
+            <!--Notification-->
             <?php if(isset($_SESSION['message'])) 
             { ?>
 
@@ -18,31 +19,37 @@
                     </button>
 
                 </div>
+                
                 <?php
             }?>
 
+            <!-- Input TODO: ERASE BUTTON -->
             <div class="card card-body">
                 <form action="save_bar.php" method="POST">
 
                     <div class="form-group">
-                        <select class="custom-select" name="action" id="inputGroupSelect01"
+                        <select class="custom-select" name="action" id="inputGroupSelect01">
 
-                            <?php if(isset($_SESSION['remember_action']))
-                            { ?>
-                                >
-                                <option selected value=<?php $_SESSION['remember_action']?> > <?php $_SESSION['remember_action'] ?></option>
-                                <?php session_unset();
-                            } 
+                            <?php if(isset($_SESSION['remember_action']))                           ##Check if there was a previous session
+                            { ?>                                                                    <!--Fill action-->
+
+                                <option selected> <?php echo $_SESSION['remember_action'] ?> </option>
+                                <option> <?php echo $_SESSION['remember_no_action'] ?> </option>
+
+                                <?php
+
+                                session_unset();
+                            }
                             else
                             { ?>
-                                
-                                >
+
                                 <option selected>Chose...</option>
+                                <option value="Add">Add</option>
+                                <option value="Substract">Substract</option>
 
                                 <?php
                             } ?>
-                            <option value="add">Add</option>
-                            <option value="substract">Substract</option>
+                            
                         </select>
                     </div>
 
