@@ -14,17 +14,13 @@ if(isset($_POST['save_bar']))
     elseif ($action == "Substract")
     {
         $no_action = "Add";
-        $color = 'danger';
+        $color = 'success';
     }
-
-    $_SESSION['message'] = 'Well Done!';
-    $_SESSION['message_type'] = 'success';
-    $_SESSION['remember_action'] = $action;
-    $_SESSION['remember_no_action'] = $no_action;
 
     if(empty($_POST['cable-name']))
     {
-        header("Location: index.php"); 
+        header("Location: index.php");
+        die("Query Failed");
     }
     
     $barcode = $_POST['cable-name'];
@@ -33,8 +29,15 @@ if(isset($_POST['save_bar']))
 
     if(!$result)
     {
+        $_SESSION['message'] = 'fuckkkkk';
+        $color = 'alert';
         die("Query Failed");
     }
+
+    $_SESSION['message'] = 'Well Done!';
+    $_SESSION['message_type'] = $color;
+    $_SESSION['remember_action'] = $action;
+    $_SESSION['remember_no_action'] = $no_action;
 
     header("Location: index.php"); 
 }

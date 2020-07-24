@@ -65,9 +65,9 @@
 
         </div>
 
-        <!-- <div class="com-md-8">
+         <div class="com-md-8">
 
-            <table class="table-dark">
+            <!--<table class="table-dark">
             
                 <thead>
 
@@ -82,9 +82,9 @@
 
                 </tbody>
             
-            </table>
+            </table>-->
 
-        </div> -->
+        </div>
 
     </div>
 </div>
