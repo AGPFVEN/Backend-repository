@@ -25,7 +25,7 @@
 
             <!-- Input TODO: ERASE BUTTON -->
             <div class="card card-body">
-                <form action="save_bar.php" method="POST">
+                <form action="save_bar.php" method="GET">
 
                     <div class="form-group">
                         <select class="custom-select" name="action" id="inputGroupSelect01">

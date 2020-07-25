@@ -10,21 +10,36 @@ if(isset($_POST['save_bar']))
     {
         $no_action = "Substract";
         $color = 'success';
+
+        $barcode = $_POST['cable-name'];
+        $query = "INSERT INTO cable(model, action) Values ('$barcode', '$action')";
     } 
     elseif ($action == "Substract")
     {
         $no_action = "Add";
         $color = 'success';
+
+        $barcode = $_POST['cable-name'];
+        $query = "DELETE FROM cable WHERE model = $barcode";
+        echo "yesss";
+        
+    }
+    elseif ($action == "Chose...")
+    {
+        header("Location: index.php");
+        $_SESSION['message'] = 'Enter function';
+        $_SESSION['message_type'] = 'warning';
+        die("Query Failed");
     }
 
     if(empty($_POST['cable-name']))
     {
         header("Location: index.php");
+        $_SESSION['message'] = 'Enter a cable code';
+        $_SESSION['message_type'] = 'warning';
         die("Query Failed");
     }
     
-    $barcode = $_POST['cable-name'];
-    $query = "INSERT INTO cable(model, action) Values ('$barcode', '$action')";
     $result = mysqli_query($connection, $query);
 
     if(!$result)
