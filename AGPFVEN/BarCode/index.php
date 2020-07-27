@@ -25,7 +25,7 @@
 
             <!-- Input TODO: ERASE BUTTON -->
             <div class="card card-body">
-                <form action="save_bar.php" method="GET">
+                <form action="save_bar.php" method="POST">
 
                     <div class="form-group">
                         <select class="custom-select" name="action" id="inputGroupSelect01">
@@ -57,7 +57,9 @@
                         <textarea name="cable-name" rows="2" class="form-control" placeholder="Task Description"></textarea>
                     </div>
 
-                    <input type="submit" class="btn btn-success btn-block" name="save_bar" value="Save bar">
+                    <div>
+                        <input type="submit" class="btn btn-success btn-block" name="save_bar" value="Save bar">
+                    </div>
 
                 </form>
 

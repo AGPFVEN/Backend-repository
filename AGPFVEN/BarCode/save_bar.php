@@ -20,7 +20,7 @@ if(isset($_POST['save_bar']))
         $color = 'success';
 
         $barcode = $_POST['cable-name'];
-        $query = "DELETE FROM cable WHERE model = $barcode";
+        $query = "DELETE FROM cable WHERE model = '$barcode' ";
         echo "yesss";
         
     }
