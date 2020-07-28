@@ -48,7 +48,9 @@
                                 <option value="Substract">Substract</option>
 
                                 <?php
-                            } ?>
+                            } 
+                            
+                            session_unset();?>
                             
                         </select>
                     </div>
@@ -69,22 +71,55 @@
 
          <div class="com-md-8">
 
-            <!--<table class="table-dark">
+            <table class="table table-bordered">
             
                 <thead>
+                    <tr>
 
-                    <th> Cable Type </th>
-                    <th> Description </th>
-
+                        <th scope="col"> id </th>
+                        <th scope="col"> Cable Type </th>
+                        <th scope="col"> Created_at </th>
+                        <th scope="col"> Delete </th>
+                    </tr>
                 </thead>
 
                 <tbody>
+                    <?php
+                    $query = "SELECT * FROM cable";                                       #Seleccionar todo dentro de la base de datos
+                    $result_tasks = mysqli_query($connection, $query);                   #Quary de MySQL (solicitud  a la base de datos)
 
-                    
+                    while($row = mysqli_fetch_array($result_tasks))                      #while (Row va a ser un array, contiene todas las columnas y v)
+                    { ?>                                                                 <!-- Row va a ser false si se acaban las filas -->
+
+                        <tr>
+                            <td> <?php echo $row['id'] ?></td>
+                            <td> <?php echo $row['model'] ?></td>
+                            <td> <?php echo $row['created_at'] ?></td>
+                            <td> 
+
+                                <form method="POST" action="save_bar.php">
+                                
+                                    <input type="hidden" name="save_bar" value="Save bar" />
+
+                                    <input type="hidden" name="cable-name" value="<?php echo $row['model'] ?>" />
+
+                                    <input type="hidden" name="action" value="Substract" />
+
+                                    <a onclick="this.parentNode.submit();" class = "btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+
+                                </form>
+
+                            </td>
+                        </tr>
+
+                        <?php 
+                    } ?>
 
                 </tbody>
             
-            </table>-->
+            </table>
 
         </div>
 

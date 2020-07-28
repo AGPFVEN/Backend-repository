@@ -12,7 +12,7 @@ if(isset($_POST['save_bar']))
         $color = 'success';
 
         $barcode = $_POST['cable-name'];
-        $query = "INSERT INTO cable(model, action) Values ('$barcode', '$action')";
+        $query = "INSERT INTO cable (model) Values ('$barcode')";
     } 
     elseif ($action == "Substract")
     {
@@ -54,7 +54,15 @@ if(isset($_POST['save_bar']))
     $_SESSION['remember_action'] = $action;
     $_SESSION['remember_no_action'] = $no_action;
 
-    header("Location: index.php"); 
+    header("Location: index.php");
+}
+
+else
+{
+    $_SESSION['message'] = 'There is not a post';
+    $_SESSION['message_type'] = 'danger';
+
+    header("Location: index.php");
 }
 
 ?>
