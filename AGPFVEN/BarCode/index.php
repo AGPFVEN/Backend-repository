@@ -5,6 +5,7 @@
 <div class="container p-4">
     <div class="row">
 
+        <!-- Left -->
         <div class="col-md-4">
 
             <!--Notification-->
@@ -25,9 +26,11 @@
 
             <!-- Input TODO: ERASE BUTTON -->
             <div class="card card-body">
-                <form action="save_bar.php" method="POST">
+                <form id="principa_form" action="save_bar.php" method="POST">
 
                     <div class="form-group">
+
+                        <!-- Input to select action (substract or add) -->
                         <select class="custom-select" name="action" id="inputGroupSelect01">
 
                             <?php if(isset($_SESSION['remember_action']))                           ##Check if there was a previous session
@@ -55,12 +58,25 @@
                         </select>
                     </div>
 
+                    <!-- Input to enter cable name -->
                     <div class="form-group">
-                        <textarea name="cable-name" rows="2" class="form-control" placeholder="Task Description"></textarea>
+                        <Input id="myInput" name="cable-name" rows="2" class="form-control" placeholder="Task Description"></input>
                     </div>
 
+                    <!-- Javascript to trigger input with enter -->
+                    <script>
+                        var input = document.getElementById("myInput");
+                        input.addEventListener("keyup", function(event) {
+                        if (event.keyCode === 13) {
+                        event.preventDefault();
+                        document.getElementById("myBtn").click();
+                        }
+                        });
+                    </script>
+
+                    <!-- Button to go save_bar.php -->
                     <div>
-                        <input type="submit" class="btn btn-success btn-block" name="save_bar" value="Save bar">
+                        <input id="myButton" type="submit" class="btn btn-success btn-block" name="save_bar" value="Save bar">
                     </div>
 
                 </form>
@@ -69,7 +85,8 @@
 
         </div>
 
-         <div class="com-md-8">
+        <!-- Right -->
+        <div class="com-md-8">
 
             <table class="table table-bordered">
             
