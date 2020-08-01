@@ -5,21 +5,21 @@ include("db.php");
 if(isset($_POST['save_bar']))
 {
     $action = $_POST['action'];
+    $barcode = $_POST['cable-name'];
+    $quantity =  $_POST['cable_quantity'];
 
     if($action == "Add")
     {
         $no_action = "Substract";
         $color = 'success';
 
-        $barcode = $_POST['cable-name'];
-        $query = "INSERT INTO cable (model) Values ('$barcode')";
+        $query = "INSERT INTO cable (model, quantity) Values ('$barcode', '$quantity')";
     } 
     elseif ($action == "Substract")
     {
         $no_action = "Add";
         $color = 'success';
 
-        $barcode = $_POST['cable-name'];
         $query = "DELETE FROM cable WHERE model = '$barcode' ";
         echo "yesss";
         

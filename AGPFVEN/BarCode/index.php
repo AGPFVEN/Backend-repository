@@ -60,17 +60,30 @@
 
                     <!-- Input to enter cable name -->
                     <div class="form-group">
-                        <Input id="myInput" name="cable-name" rows="2" class="form-control" placeholder="Task Description"></input>
+                        <Input id="myInput" name="cable-name" rows="2" class="form-control" placeholder="Cable type"></input>
                     </div>
+
+                    <!-- Input quantity -->
+                    <div class="form-group">
+                        <Input id="myQuantity" name="cable_quantity" rows="2" class="form-control" placeholder="Quantity"></input>
+                    </div>
+
+                    <script>
+                        var input = document.getElementById('myInput');
+                        input.focus();
+                        input.select();
+                    </script>
 
                     <!-- Javascript to trigger input with enter -->
                     <script>
                         var input = document.getElementById("myInput");
-                        input.addEventListener("keyup", function(event) {
-                        if (event.keyCode === 13) {
-                        event.preventDefault();
-                        document.getElementById("myBtn").click();
-                        }
+                        input.addEventListener("keyup", function(event) 
+                        {
+                            if (event.keyCode === 13)
+                            {
+                                event.preventDefault();
+                                document.getElementById("myBtn").click();
+                            }
                         });
                     </script>
 
@@ -95,6 +108,7 @@
 
                         <th scope="col"> id </th>
                         <th scope="col"> Cable Type </th>
+                        <th scope="col"> Quantity </th>
                         <th scope="col"> Created_at </th>
                         <th scope="col"> Delete </th>
                     </tr>
@@ -111,6 +125,7 @@
                         <tr>
                             <td> <?php echo $row['id'] ?></td>
                             <td> <?php echo $row['model'] ?></td>
+                            <td> <?php echo $row['quantity'] ?></td>
                             <td> <?php echo $row['created_at'] ?></td>
                             <td> 
 
