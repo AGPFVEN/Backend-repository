@@ -6,7 +6,7 @@
     <div class="row">
 
         <!-- Left -->
-        <div class="col-md-4">
+        <div class="col-md-4.5">
 
             <!--Notification-->
             <?php if(isset($_SESSION['message'])) 
@@ -26,36 +26,27 @@
 
             <!-- Input TODO: ERASE BUTTON -->
             <div class="card card-body">
-                <form id="principa_form" action="save_bar.php" method="POST">
+                <form id="secondary_form" action="checking_cables.php" method="POST">
 
+                    <!-- Quantity -->
                     <div class="form-group">
+                        <?php if(isset($_SESSION['n_cables']))
+                        { ?>
+                            <div class="alert alert-primary">
+                                Your current order has <?php $_SESSION['n_cables']?> of <?php $_SESSION['t_cables']?> !
+                            </div>
 
-                        <!-- Input to select action (substract or add) -->
-                        <select class="custom-select" name="action" id="inputGroupSelect01">
+                            <?php
+                        }
+                        else
+                        { ?>
+                            <div class="alert alert-primary">
+                                Start your new order scaning a barcode!
+                            </div>
 
-                            <?php if(isset($_SESSION['remember_action']))                           ##Check if there was a previous session
-                            { ?>                                                                    <!--Fill action-->
-
-                                <option selected> <?php echo $_SESSION['remember_action'] ?> </option>
-                                <option> <?php echo $_SESSION['remember_no_action'] ?> </option>
-
-                                <?php
-
+                            <?php
                                 session_unset();
-                            }
-                            else
-                            { ?>
-
-                                <option> Chose...</option>
-                                <option selected value="Add">Add</option>
-                                <option value="Substract">Substract</option>
-
-                                <?php
-                            } 
-                            
-                            session_unset();?>
-                            
-                        </select>
+                        }   ?>
                     </div>
 
                     <!-- Input to enter cable name -->
@@ -63,36 +54,27 @@
                         <Input id="myInput" name="cable-name" rows="2" class="form-control" placeholder="Cable type"></input>
                     </div>
 
-                    <!-- Input quantity -->
-                    <div class="form-group">
-                        <Input id="myQuantity" name="cable_quantity" rows="2" class="form-control" placeholder="Quantity"></input>
-                    </div>
-
                     <!-- Javascript to trigger at loaded -->
                     <script>
-                        var input = document.getElementById('myInput');
+                        var input = document.getElementById('myQuantity');
                         input.focus();
                         input.select();
                     </script>
 
-                    <!-- Javascript to trigger input with enter -->
-                    <script>
-                        var input = document.getElementById("myInput");
-                        input.addEventListener("keyup", function(event) 
-                        {
-                            if (event.keyCode === 13)
-                            {
-                                event.preventDefault();
-                                document.getElementById("myBtn").click();
-                            }
-                        });
-                    </script>
+                    <!-- Add barcode -->
+                    <div class="form-group">
+                        <div>
+                            <input id="myQuantity" type="submit" class="btn btn-primary btn-block" name="Checking_cables" value="Add Barcode to new order">
+                        </div>
+                    </div>
 
+                </form>
+
+                <form id="principal_form" action="save_bar.php" method="POST">
                     <!-- Button to go save_bar.php -->
                     <div>
                         <input id="myButton" type="submit" class="btn btn-success btn-block" name="save_bar" value="Save bar">
                     </div>
-
                 </form>
 
             </div>
@@ -100,7 +82,7 @@
         </div>
 
         <!-- Right -->
-        <div class="com-md-8">
+        <div class="col-md-8">
 
             <table class="table table-bordered">
             
@@ -117,7 +99,7 @@
 
                 <tbody>
                     <?php
-                    $query = "SELECT * FROM cable";                                       #Seleccionar todo dentro de la base de datos
+                    $query = "SELECT * FROM cable";                                      #Seleccionar todo dentro de la base de datos
                     $result_tasks = mysqli_query($connection, $query);                   #Quary de MySQL (solicitud  a la base de datos)
 
                     while($row = mysqli_fetch_array($result_tasks))                      #while (Row va a ser un array, contiene todas las columnas y v)
@@ -155,7 +137,6 @@
             </table>
 
         </div>
-
     </div>
 </div>
 
