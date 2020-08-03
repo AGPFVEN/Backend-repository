@@ -46,8 +46,8 @@
                             else
                             { ?>
 
-                                <option selected>Chose...</option>
-                                <option value="Add">Add</option>
+                                <option> Chose...</option>
+                                <option selected value="Add">Add</option>
                                 <option value="Substract">Substract</option>
 
                                 <?php

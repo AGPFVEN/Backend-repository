@@ -13,7 +13,7 @@ if(isset($_POST['save_bar']))
         $no_action = "Substract";
         $color = 'success';
 
-        $query = "INSERT INTO cable (model, quantity) Values ('$barcode', '$quantity')";
+        $query = "SELECT quantity FROM `cable` WHERE model = '$barcode'";
     }
     elseif($action == "Chose...")
     {
@@ -22,7 +22,6 @@ if(isset($_POST['save_bar']))
         $_SESSION['message_type'] = 'warning';
         die("Query Failed");
     }
-
     if(empty($_POST['cable-name']))
     {
         header("Location: index.php");
@@ -32,12 +31,14 @@ if(isset($_POST['save_bar']))
     }
     
     $result = mysqli_query($connection, $query);
+    $row = mysqli_fetch_assoc($result);
+    echo $row['quantity'];
 
     if(!$result)
     {
         $_SESSION['message'] = 'fuckkkkk';
         $color = 'alert';
-        die("Query Failed");
+        die("result didn't function");
     }
 
     $_SESSION['message'] = 'Well Done!';
@@ -45,9 +46,7 @@ if(isset($_POST['save_bar']))
     $_SESSION['remember_action'] = $action;
     $_SESSION['remember_no_action'] = $no_action;
 
-    header("Location: index.php");
 }
-
 else
 {
     $_SESSION['message'] = 'There is not a post';
