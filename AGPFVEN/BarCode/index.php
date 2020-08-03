@@ -68,6 +68,7 @@
                         <Input id="myQuantity" name="cable_quantity" rows="2" class="form-control" placeholder="Quantity"></input>
                     </div>
 
+                    <!-- Javascript to trigger at loaded -->
                     <script>
                         var input = document.getElementById('myInput');
                         input.focus();

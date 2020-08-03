@@ -14,17 +14,8 @@ if(isset($_POST['save_bar']))
         $color = 'success';
 
         $query = "INSERT INTO cable (model, quantity) Values ('$barcode', '$quantity')";
-    } 
-    elseif ($action == "Substract")
-    {
-        $no_action = "Add";
-        $color = 'success';
-
-        $query = "DELETE FROM cable WHERE model = '$barcode' ";
-        echo "yesss";
-        
     }
-    elseif ($action == "Chose...")
+    elseif($action == "Chose...")
     {
         header("Location: index.php");
         $_SESSION['message'] = 'Enter function';
