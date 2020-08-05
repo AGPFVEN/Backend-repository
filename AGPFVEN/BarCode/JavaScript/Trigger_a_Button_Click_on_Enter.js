@@ -1,7 +1,7 @@
 //setup before functions
 var typingTimer; //timer identifier
 var doneTypingInterval = 5000; //time in ms, 5 second for example
-var $input = $("#myInput");
+var $input = $("myInput");
 
 //on keyup, start the countdown
 $input.on("keyup", function () {
@@ -17,5 +17,5 @@ $input.on("keydown", function () {
 //user is "finished typing," do something
 function doneTyping() {
   //do something
-  document.getElementById("myForm").submit();
+  document.getElementById("myQuantity").submit();
 }

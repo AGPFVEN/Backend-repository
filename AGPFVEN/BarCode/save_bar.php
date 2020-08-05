@@ -4,19 +4,18 @@ include("db.php");
 
 if(isset($_POST['save_bar']))
 {
-    print($_POST);
     
-    $barcode = $_POST['cable-name'];
-    $quantity =  $_POST['cable_quantity'];
+    $barcode = $_SESSION['n_cables'];
+    $quantity =  $_SESSION['t_cables'];
 
-    if(empty($_POST['cable-name']))
+    if(empty($_SESSION['n_cables']))
     {
         header("Location: index.php");
         $_SESSION['message'] = 'Enter a cable code';
         $_SESSION['message_type'] = 'warning';
         die("Query Failed");
     }
-    if(empty($_POST['cable_quantity']))
+    if(empty($_SESSION['t_cables']))
     {
         header("Location: index.php");
         $_SESSION['message'] = 'Enter a cable quantity';
@@ -64,7 +63,9 @@ if(isset($_POST['save_bar']))
     $_SESSION['message'] = 'Well Done';
     $_SESSION['message_type'] = $color;
 
-    // header("Location: index.php");
+    session_unset();
+
+    header("Location: index.php");
 }
 else
 {

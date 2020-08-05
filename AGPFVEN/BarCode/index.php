@@ -6,7 +6,7 @@
     <div class="row">
 
         <!-- Left -->
-        <div class="col-md-4.5">
+        <div class="col-lg-3">
 
             <!--Notification-->
             <?php if(isset($_SESSION['message'])) 
@@ -33,7 +33,7 @@
                         <?php if(isset($_SESSION['n_cables']))
                         { ?>
                             <div class="alert alert-primary">
-                                Your current order has <?php $_SESSION['n_cables']?> of <?php $_SESSION['t_cables']?> !
+                                Your current has <?php echo $_SESSION['t_cables'] ?> of <?php echo $_SESSION['n_cables'] ?> !
                             </div>
 
                             <?php
@@ -56,9 +56,33 @@
 
                     <!-- Javascript to trigger at loaded -->
                     <script>
-                        var input = document.getElementById('myQuantity');
+                        var input = document.getElementById('myInput');
                         input.focus();
                         input.select();
+                    </script>
+
+                    <script>
+                        //setup before functions
+                        var typingTimer; //timer identifier
+                        var doneTypingInterval = 100; //time in ms, 5 second for example
+                        var $input = $("myInput");
+
+                        //on keyup, start the countdown
+                        $input.on("keyup", function () {
+                        clearTimeout(typingTimer);
+                        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+                        });
+
+                        //on keydown, clear the countdown
+                        $input.on("keydown", function () {
+                        clearTimeout(typingTimer);
+                        });
+
+                        //user is "finished typing," do something
+                        function doneTyping() {
+                        //do something
+                        document.getElementById("myQuantity").submit();
+                        }
                     </script>
 
                     <!-- Add barcode -->
