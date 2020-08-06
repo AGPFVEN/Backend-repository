@@ -60,10 +60,10 @@ if(isset($_POST['save_bar']))
         die("result didn't function");
     }
 
-    $_SESSION['message'] = 'Well Done';
-    $_SESSION['message_type'] = $color;
-
     session_unset();
+
+    $_SESSION['message'] = 'Database Updated';
+    $_SESSION['message_type'] = $color;
 
     header("Location: index.php");
 }
