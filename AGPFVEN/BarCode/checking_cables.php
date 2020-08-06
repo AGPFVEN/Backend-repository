@@ -19,16 +19,22 @@ if(isset($_POST['Checking_cables']) AND $_POST['cable-name'] != NULL)
             if (confirm('Are you sure you want to erase your current order and start a new one with <?php echo $_POST['cable-name'] ?> ?')) {
                 // Save it!
                 <?php
-                    $_SESSION['n_cables'] = $_POST['cable-name'];
-                    $_SESSION['t_cables'] = 1;
 
+                    echo 'saved';
 
+                    // $_SESSION['n_cables'] = $_POST['cable-name'];
+                    // $_SESSION['t_cables'] = 1;
+                
                 ?>
             } else {
                 // Do nothing!
                 <?php
-                    $_SESSION['message'] = 'Your order has been safeguarded';
-                    $_SESSION['message_type'] = 'success';
+
+                    echo 'saved';
+
+                    // $_SESSION['message'] = 'Your order has been safeguarded';
+                    // $_SESSION['message_type'] = 'success';
+                
                 ?>
             }
         </script>
