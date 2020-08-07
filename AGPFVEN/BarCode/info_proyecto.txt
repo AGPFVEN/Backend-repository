@@ -1,0 +1,38 @@
+input(FSNKU) 
+if(isset(FSNKU) en base de datos)
+{
+    output
+    (
+        Asin
+        Sku
+        BIN
+        Descripción
+    )
+
+    confirmar if (info correcta)
+    {
+        introducir(código de barra)
+    }
+
+    if(FSNKU == FSNKU(BIN))
+    {
+        Seguir escaneando con una cuenta
+        Terminar y modificar en la base de datos
+    }
+    else()
+    {
+        Error
+        confirmar if (quieres volver a scanear )
+        {
+            scanear de nuevo
+        } 
+        else
+        {
+            Cual es el FSNKU y donde va
+        }
+    }
+}
+els
+{
+
+}

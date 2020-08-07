@@ -4,7 +4,7 @@
 if(isset($_POST['Checking_cables']) AND $_POST['cable-name'] != NULL)
 {
     //Check if you know the cable name
-    if($_SESSION['n_cables'] == $_POST['cable-name'])
+    if(isset($_SESSION['n_cables']) == TRUE  AND $_SESSION['n_cables'] == $_POST['cable-name'])
     {
         $_SESSION['t_cables'] += 1;
 
@@ -20,20 +20,17 @@ if(isset($_POST['Checking_cables']) AND $_POST['cable-name'] != NULL)
                 // Save it!
                 <?php
 
-                    echo 'saved';
+                    $_SESSION['n_cables'] = $_POST['cable-name'];
+                    $_SESSION['t_cables'] = 1;
 
-                    // $_SESSION['n_cables'] = $_POST['cable-name'];
-                    // $_SESSION['t_cables'] = 1;
                 
                 ?>
             } else {
                 // Do nothing!
                 <?php
 
-                    echo 'saved';
-
-                    // $_SESSION['message'] = 'Your order has been safeguarded';
-                    // $_SESSION['message_type'] = 'success';
+                    $_SESSION['message'] = 'Your order has been safeguarded';
+                    $_SESSION['message_type'] = 'success';
                 
                 ?>
             }
