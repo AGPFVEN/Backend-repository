@@ -11,8 +11,8 @@
             
             ?>
 
-            <!-- Right -->
-            <div class="col-md-8">
+            <!-- Up -->
+            <div class="col-lg">
 
                 <table class="table table-bordered">
                 
@@ -72,6 +72,18 @@
                 </table>
 
             </div>
+
+            <!-- Down -->
+            <div class="col-lg-1">
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary">Left</button>
+                    <button type="button" class="btn btn-secondary">Middle</button>
+                    <button type="button" class="btn btn-secondary">Right</button>
+                </div>
+                
+            </div>
+
          <?php 
         } ?>
     </div>
