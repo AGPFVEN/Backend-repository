@@ -31,7 +31,7 @@
 
                     <tbody>
                         <?php
-                        $query = "SELECT FROM cable WHERE BIN = $Bin";                       #Seleccionar todo dentro de la base de datos
+                        $query = "SELECT * FROM cable WHERE BIN = '$Bin'";                       #Seleccionar todo dentro de la base de datos
                         $result_tasks = mysqli_query($connection, $query);                   #Quary de MySQL (solicitud  a la base de datos)
 
                         while($row = mysqli_fetch_array($result_tasks))                      #while (Row va a ser un array, contiene todas las columnas y v)
