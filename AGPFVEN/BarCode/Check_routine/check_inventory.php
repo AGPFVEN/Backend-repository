@@ -1,6 +1,6 @@
-<?php include("database/db.php") ?>
+<?php include("../database/db.php") ?>
 
-<?php include("includes/header.php")?>
+<?php include("../includes/header.php")?>
 
 <?php if(isset($_POST['Checking_inventory']))
 { 
@@ -75,22 +75,30 @@ $Bin = $_POST['cable-name'];
 
         </div>
 
-        <!-- Down -->
-        <div class="row">
+        <?php
+        if(isset($_SESSION['FSNKU']))
+        {
 
-            <form method="POST" action="save_bar.php" class="btn btn btn-lg btn-block">
+        }
+        else
+        { ?>
 
-                <input type="hidden" name="cable-name" value="<?php echo $row['FSNKU'] ?>" />
+            <!-- Down -->
+            <div class="row">
 
-                <button type="submit" class="btn btn-success btn-lg btn-block">That's my BIN</button>
+                <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
 
-                <button type="submit" class="btn btn-danger btn-lg btn-block">That's not my BIN</button>
+                    <input type="hidden" name="FSNKU" value="<?php echo $row['FSNKU'] ?>" />
 
-            </form>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">That's my BIN</button>
 
-        </div>
+                    <a href="../index.php" type="submit" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
 
+                </form>
 
+            </div>
+         <?php 
+        }?>
     </div>
-    <?php 
+    <?php    
 } ?>
