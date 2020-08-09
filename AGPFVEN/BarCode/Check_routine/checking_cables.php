@@ -1,4 +1,4 @@
-<?php include("db.php");
+<?php include("database/db.php");
 
 //Check if there is a POST
 if(isset($_POST['Checking_cables']) AND $_POST['cable-name'] != NULL)

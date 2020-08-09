@@ -23,5 +23,11 @@
 <nav class = "navbar navbar-dark bg-dark">
 <div class = "container">
 <a href = "index.php" class="navbar-brand">AGPFVEN Scanner (PHP MySQL)</a>
+
+<?php
+
+session_destroy();
+
+?>
 </div>
 </nav>

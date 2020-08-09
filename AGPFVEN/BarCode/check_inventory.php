@@ -1,21 +1,21 @@
-<?php include("db.php") ?>
+<?php include("database/db.php") ?>
 
 <?php include("includes/header.php")?>
 
-<div class="container p-4">
-    <div class="row">
-
-        <?php if(isset($_POST['Checking_inventory']))
-        { 
-            $Bin = $_POST['cable-name'];
+<?php if(isset($_POST['Checking_inventory']))
+{ 
+$Bin = $_POST['cable-name'];
             
-            ?>
+?>
+
+    <div class="container p-4">
+        <div class="row">
 
             <!-- Up -->
             <div class="col-lg">
 
                 <table class="table table-bordered">
-                
+                    
                     <thead>
                         <tr>
 
@@ -48,7 +48,7 @@
                                 <td> 
 
                                     <form method="POST" action="save_bar.php">
-                                    
+                                        
                                         <input type="hidden" name="save_bar" value="Save bar" />
 
                                         <input type="hidden" name="cable-name" value="<?php echo $row['model'] ?>" />
@@ -68,23 +68,29 @@
                         } ?>
 
                     </tbody>
-                
+                    
                 </table>
 
             </div>
 
-            <!-- Down -->
-            <div class="col-lg-1">
+        </div>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary">Left</button>
-                    <button type="button" class="btn btn-secondary">Middle</button>
-                    <button type="button" class="btn btn-secondary">Right</button>
-                </div>
-                
-            </div>
+        <!-- Down -->
+        <div class="row">
 
-         <?php 
-        } ?>
+            <form method="POST" action="save_bar.php" class="btn btn btn-lg btn-block">
+
+                <input type="hidden" name="cable-name" value="<?php echo $row['FSNKU'] ?>" />
+
+                <button type="submit" class="btn btn-success btn-lg btn-block">That's my BIN</button>
+
+                <button type="submit" class="btn btn-danger btn-lg btn-block">That's not my BIN</button>
+
+            </form>
+
+        </div>
+
+
     </div>
-</div>
+    <?php 
+} ?>
