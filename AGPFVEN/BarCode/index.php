@@ -5,7 +5,7 @@
 <div class="container p-4">
     <div class="row">
 
-        <form action="Check_routine/check_inventory.php" id="first case" method="POST" class="btn btn btn-lg btn-block">
+        <form action="check_inventory.php" id="first case" method="POST" class="btn btn btn-lg btn-block">
         
             <div class="input-group mb-3">
 
