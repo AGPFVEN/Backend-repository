@@ -1,12 +1,22 @@
-<?php include("../database/db.php") ?>
+<?php
+    
+    include("database/db.php");
 
-<?php include("../includes/header.php")?>
+    include("includes/header.php");
 
-<?php if(isset($_POST['Checking_inventory']))
-{ 
-$Bin = $_POST['cable-name'];
-            
-?>
+    if(isset($_POST['cable-name']))
+    {
+        $Bin = $_POST['cable-name'];
+
+        echo("funooiubjkbkj");
+    }
+    else
+    {
+        $Bin = $_SESSION['BIN'];
+
+        echo("noooo funooiubjkbkj");
+
+    } ?>
 
     <div class="container p-4">
         <div class="row">
@@ -39,9 +49,9 @@ $Bin = $_POST['cable-name'];
 
                             <tr>
                                 <td> <?php echo $row['id'] ?></td>
-                                <td> <?php echo $row['FSNKU'] ?></td>
+                                <td> <?php echo $row['FSNKU']; $FSNKU = $row['FSNKU'] ?></td>
                                 <td> <?php echo $row['ASIN'] ?></td>
-                                <td> <?php echo $row['BIN'] ?></td>
+                                <td> <?php echo $row['BIN']; $BIN = $row['BIN'] ?></td>
                                 <td> <?php echo $row['DESCRIPTION'] ?></td>
                                 <td> <?php echo $row['quantity'] ?></td>
                                 <td> <?php echo $row['created_at'] ?></td>
@@ -76,9 +86,32 @@ $Bin = $_POST['cable-name'];
         </div>
 
         <?php
-        if(isset($_SESSION['FSNKU']))
-        {
+        if(isset($_SESSION['BIN']))
+        { ?>
+            <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
 
+                <input type="hidden" name="BIN" value="<?php echo $BIN ?>" />
+
+                <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
+            
+                <div class="input-group btn-block">
+                
+                    <input type="text" name="Check_operation_input" class="form-control" placeholder="<?php echo $_SESSION["FSNKU"] ?>" ></input>
+                    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> x<?php echo $_SESSION['count'] ?> </span>
+                    </div>
+
+                    <button class="btn btn-dark" name="Check_operations_2" type="submit">Add</button>
+                
+                </div>
+            </form>
+                
+            <button type="submit" name="Modify" class="btn btn-success btn-lg btn-block">That's my BIN</button>
+
+            <button type="submit" class="btn btn-danger btn-lg btn-block">ERROR</button>
+
+            <?php
         }
         else
         { ?>
@@ -88,17 +121,18 @@ $Bin = $_POST['cable-name'];
 
                 <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
 
-                    <input type="hidden" name="FSNKU" value="<?php echo $row['FSNKU'] ?>" />
+                    <input type="hidden" name="BIN" value="<?php echo $BIN ?>" />
 
-                    <button type="submit" class="btn btn-success btn-lg btn-block">That's my BIN</button>
+                    <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
 
-                    <a href="../index.php" type="submit" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
+                    <button type="submit" name="Check_operations" class="btn btn-success btn-lg btn-block">That's my BIN</button>
 
-                </form>
+                    <button type="submit" class="btn btn-danger btn-lg btn-block">That's not my BIN</button>
 
+                </form> 
             </div>
-         <?php 
+        <?php 
         }?>
     </div>
-    <?php    
-} ?>
+    <?php    //} 
+?>
