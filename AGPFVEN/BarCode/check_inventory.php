@@ -51,7 +51,7 @@
                                 <td> <?php echo $row['id'] ?></td>
                                 <td> <?php echo $row['FSNKU']; $FSNKU = $row['FSNKU'] ?></td>
                                 <td> <?php echo $row['ASIN'] ?></td>
-                                <td> <?php echo $row['BIN']; $BIN = $row['BIN'] ?></td>
+                                <td> <?php echo $row['BIN'] ?></td>
                                 <td> <?php echo $row['DESCRIPTION'] ?></td>
                                 <td> <?php echo $row['quantity'] ?></td>
                                 <td> <?php echo $row['created_at'] ?></td>
@@ -90,9 +90,12 @@
         { ?>
             <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
 
-                <input type="hidden" name="BIN" value="<?php echo $BIN ?>" />
+                <input type="hidden" name="BIN" value="<?php echo $Bin ?>" />
 
                 <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
+
+                <input type="hidden" name="count" value="<?php echo $_SESSION['count'] ?>" />
+
             
                 <div class="input-group btn-block">
                 
@@ -106,10 +109,20 @@
                 
                 </div>
             </form>
-                
-            <button type="submit" name="Modify" class="btn btn-success btn-lg btn-block">That's my BIN</button>
 
-            <button type="submit" class="btn btn-danger btn-lg btn-block">ERROR</button>
+            <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
+
+                <input type="hidden" name="BIN" value="<?php echo $Bin ?>" />
+
+                <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
+
+                <input type="hidden" name="count" value="<?php echo $_SESSION['count'] ?>" />
+                
+                <button type="submit" name="Modify" class="btn btn-success btn-lg btn-block">That's my BIN</button>
+            
+            </form>
+
+            <a href="Others/Test_1.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
 
             <?php
         }
@@ -121,18 +134,18 @@
 
                 <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
 
-                    <input type="hidden" name="BIN" value="<?php echo $BIN ?>" />
+                    <input type="hidden" name="BIN" value="<?php echo $Bin ?>" />
 
                     <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
 
                     <button type="submit" name="Check_operations" class="btn btn-success btn-lg btn-block">That's my BIN</button>
 
-                    <button type="submit" class="btn btn-danger btn-lg btn-block">That's not my BIN</button>
+                    <a href="Others/Test_1.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
 
                 </form> 
             </div>
         <?php 
-        }?>
+        } ?>
     </div>
     <?php    //} 
 ?>
