@@ -7,14 +7,10 @@
     if(isset($_POST['cable-name']))
     {
         $Bin = $_POST['cable-name'];
-
-        echo("funooiubjkbkj");
     }
     else
     {
         $Bin = $_SESSION['BIN'];
-
-        echo("noooo funooiubjkbkj");
 
     } ?>
 
@@ -96,10 +92,34 @@
 
                 <input type="hidden" name="count" value="<?php echo $_SESSION['count'] ?>" />
 
+                <!--Notification-->
+                <?php if(isset($_SESSION['message'])) 
+                { ?>
+                    <div class="row">
+                    
+                        <div class="btn alert alert-<?=$_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
+
+                            <?= $_SESSION['message'] ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                    
+                    </div>
+                    <?php
+                }?>
             
                 <div class="input-group btn-block">
                 
-                    <input type="text" name="Check_operation_input" class="form-control" placeholder="<?php echo $_SESSION["FSNKU"] ?>" ></input>
+                    <input id="myInput" type="text" name="Check_operation_input" class="form-control" placeholder="<?php echo $_SESSION["FSNKU"] ?>" ></input>
+
+                    <!-- Javascript to trigger at loaded -->
+                    <script>
+                        var input = document.getElementById('myInput');
+                        input.focus();
+                        input.select();
+                    </script>
                     
                     <div class="input-group-prepend">
                         <span class="input-group-text"> x<?php echo $_SESSION['count'] ?> </span>
@@ -144,8 +164,5 @@
 
                 </form> 
             </div>
-        <?php 
+         <?php 
         } ?>
-    </div>
-    <?php    //} 
-?>

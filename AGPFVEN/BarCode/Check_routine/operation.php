@@ -20,8 +20,7 @@
 
             header("Location: ../check_inventory.php");
         }
-    }
-    else
+    } else
     {
         if(isset($_POST['Check_operation_input']))
         {
@@ -31,19 +30,43 @@
     
                 header("Location: ../check_inventory.php");
             }
+            else
+            {
+                $_SESSION['count'] = $_POST['count'];
+
+                $FSKNU = $_POST['Check_operation_input'];
+                $query_operation = "SELECT * FROM cable WHERE FSNKU = '$FSKNU'";
+                $new_result = mysqli_query($connection, $query_operation);
+                $result_row = mysqli_fetch_array($new_result);
+
+                if($result_row['BIN'] != NULL)
+                {
+                    $_SESSION['message'] = 'Your FSNKU does not match with the one you selected, but it does with the BIN '. $result_row['BIN'];
+                    $_SESSION['message_type'] = 'danger';
+
+                    header("Location: ../check_inventory.php");
+                }
+                else
+                {
+                    $_SESSION['message'] = 'Your FSNKU is not registered ';
+                    $_SESSION['message_type'] = 'danger';
+
+                    header("Location: ../check_inventory.php");
+                }
+
+
+            }
         }
     }
-    if($_POST['Modify'])
+    if(isset($_POST['Modify']))
     {
-        $Bin = $_SESSION["BIN"];
-        $count = $_SESSION["count"];
+        $Bin = $_POST["BIN"];
+        $count = $_POST["count"];
+        echo($count);
 
-        $query = "UPDATE cable SET quantity = 'count' WHERE BIN = '$Bin'";
-        $result = mysqli_query($connection, $query);
+        $query_operation = "UPDATE cable SET quantity = '$count' WHERE BIN = '$Bin'";
+        $new_result = mysqli_query($connection, $query_operation);
 
         header("Location: ../check_inventory.php");
-
-        //$query = "UPDATE cable SET quantity = '$query_result' WHERE model = '$barcode'";
-    }
-
+    } 
 ?>
