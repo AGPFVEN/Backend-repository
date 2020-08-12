@@ -1,6 +1,7 @@
-<?php include("database/db.php") ?>
+<?php include("database/db.php");
 
-<?php include("includes/header.php")?>
+    include("includes/header.php");
+?>
 
 <div class="container p-4">
     <div class="row">
@@ -18,6 +19,8 @@
             </div>
         
         </form>
+
+        <a href="new_BIN_inventory.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
 
     </div>
 </div>              

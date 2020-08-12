@@ -81,6 +81,24 @@
 
         </div>
 
+        <!--Notification-->
+        <?php if(isset($_SESSION['message'])) 
+        { ?>
+            <div class="row">
+            
+                <div class="btn btn btn-lg btn-block alert alert-<?=$_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
+
+                    <?= $_SESSION['message'] ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+            
+            </div>
+            <?php
+        }?>
+
         <?php
         if(isset($_SESSION['BIN']))
         { ?>
@@ -91,24 +109,6 @@
                 <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
 
                 <input type="hidden" name="count" value="<?php echo $_SESSION['count'] ?>" />
-
-                <!--Notification-->
-                <?php if(isset($_SESSION['message'])) 
-                { ?>
-                    <div class="row">
-                    
-                        <div class="btn alert alert-<?=$_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
-
-                            <?= $_SESSION['message'] ?>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                        </div>
-                    
-                    </div>
-                    <?php
-                }?>
             
                 <div class="input-group btn-block">
                 
@@ -128,21 +128,12 @@
                     <button class="btn btn-dark" name="Check_operations_2" type="submit">Add</button>
                 
                 </div>
-            </form>
-
-            <form method="POST" action="Check_routine/operation.php" class="btn btn btn-lg btn-block">
-
-                <input type="hidden" name="BIN" value="<?php echo $Bin ?>" />
-
-                <input type="hidden" name="FSNKU" value="<?php echo $FSNKU ?>" />
-
-                <input type="hidden" name="count" value="<?php echo $_SESSION['count'] ?>" />
                 
                 <button type="submit" name="Modify" class="btn btn-success btn-lg btn-block">That's my BIN</button>
             
             </form>
 
-            <a href="Others/Test_1.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
+            <a href="index.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
 
             <?php
         }
@@ -160,7 +151,7 @@
 
                     <button type="submit" name="Check_operations" class="btn btn-success btn-lg btn-block">That's my BIN</button>
 
-                    <a href="Others/Test_1.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
+                    <a href="index.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
 
                 </form> 
             </div>

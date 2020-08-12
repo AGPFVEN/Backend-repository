@@ -67,6 +67,6 @@
         $query_operation = "UPDATE cable SET quantity = '$count' WHERE BIN = '$Bin'";
         $new_result = mysqli_query($connection, $query_operation);
 
-        header("Location: ../check_inventory.php");
+        header("Location: ../index.php");
     } 
 ?>
