@@ -20,7 +20,7 @@
         
         </form>
 
-        <a href="new_BIN_inventory.php" class="btn btn-danger btn-lg btn-block">That's not my BIN</a>
+        <a href="new_BIN_inventory.php" class="btn btn-info btn-lg btn-block">Create new BIN</a>
 
     </div>
 </div>              
