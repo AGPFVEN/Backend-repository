@@ -7,18 +7,27 @@
 
 <form  method="POST" action="Create_routine/Intro_data_into_db.php" class="btn btn btn-lg btn-block">
 
-    <!-- FSNKU Input -->
-    <div class="tn btn-secondary btn-lg btn-block input-group mb-3">
-
-        <div class="input-group-prepend input-group-prepend-lg">
-
-            <span class="input-group-text" id="basic-addon1">FSNKU</span>
-        
-        </div>
-
-        <input type="text"  name="FSNKU" class="form-control form-control-lg" placeholder="X000NHQDRZ" aria-label="Username" aria-describedby="basic-addon1">
     
-    </div>
+    <!-- Count of FSNKU -->
+    <?php
+
+        if(isset($_SESSION['count']))
+        {
+            if($_POST['FSNKU'] == $_SESSION['FSNKU'])
+            {
+                $count = $_SESSION['count'] + 1;
+                $asin = $_SESSION['ASIN'];
+                $bin = $_SESSION['BIN'];
+                $description = $_SESSION['DESCRIPTION'];
+            }
+        }
+        else
+        {
+            $_SESSION['count'] = 1;
+        }
+
+    ?>
+
 
     <!-- ASIN Input -->
     <div class="tn btn-secondary btn-lg btn-block input-group mb-3">
@@ -61,6 +70,29 @@
         
     </div>
 
-    <button type="submit" name="Modify" class="btn btn-primary btn-lg btn-block">Create new BIN</button>
+    <input type="hidden" name="count" value="<?php echo $count ?>" />
+
+    <!-- FSNKU Input -->
+    <div class="tn btn-secondary btn-lg btn-block input-group mb-3">
+
+        <div class="input-group-prepend input-group-prepend-lg">
+
+            <span class="input-group-text" id="basic-addon1">FSNKU</span>
+        
+        </div>
+
+        <input type="text"  name="FSNKU" class="form-control form-control-lg" placeholder="X000NHQDRZ" aria-label="Username" aria-describedby="basic-addon1">
+
+        <div class="input-group-append">
+
+            <span class="input-group-text" ><?php echo $count ?></span>
+
+        </div>
+    
+    </div>
+
+    <button type="submit" name="Insert_into_count"  value="Insert_count" class="btn btn-primary btn-lg btn-block">Add to count</button>
+
+    <button type="submit" name="Insert_into_db"  value="Insert_db" class="btn btn-primary btn-lg btn-block">Create new BIN</button>
 
 </form>

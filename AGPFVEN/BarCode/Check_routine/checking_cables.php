@@ -22,7 +22,6 @@ if(isset($_POST['Checking_cables']) AND $_POST['cable-name'] != NULL)
 
                     $_SESSION['n_cables'] = $_POST['cable-name'];
                     $_SESSION['t_cables'] = 1;
-
                 
                 ?>
             } else {
