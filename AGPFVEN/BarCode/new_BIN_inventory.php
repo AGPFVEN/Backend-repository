@@ -61,6 +61,6 @@
         
     </div>
 
-
+    <button type="submit" name="Modify" class="btn btn-primary btn-lg btn-block">Create new BIN</button>
 
 </form>
