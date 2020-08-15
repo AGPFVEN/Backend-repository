@@ -13,17 +13,36 @@
 
         if(isset($_SESSION['count']))
         {
-            if($_POST['FSNKU'] == $_SESSION['FSNKU'])
+            if($_SESSION['count'] == 1)
             {
-                $count = $_SESSION['count'] + 1;
-                $asin = $_SESSION['ASIN'];
-                $bin = $_SESSION['BIN'];
-                $description = $_SESSION['DESCRIPTION'];
+                $_POST["FSNKU"] = $_SESSION["FSNKU"];
             }
+            if($_POST["FSNKU"] == $_SESSION["FSNKU"])
+            {
+                $_SESSION['count']++;
+            }
+
+            $asin = $_SESSION['ASIN'];
+            $bin = $_SESSION['BIN'];
+            $description = $_SESSION['DESCRIPTION'];
         }
         else
         {
             $_SESSION['count'] = 1;
+        }
+
+        $count = $_SESSION['count'];
+
+        function exists($does_exists, $replace)
+        {
+            if(array_key_exists($does_exists ,$_POST))
+            {
+                echo ($_POST[$does_exists]);
+            }
+            else
+            {
+                echo ($replace);
+            }
         }
 
     ?>
@@ -35,10 +54,10 @@
         <div class="input-group-prepend input-group-prepend-lg">
 
             <span class="input-group-text" id="basic-addon1">ASIN</span>
-        
+
         </div>
 
-        <input type="text"  name="ASIN" class="form-control form-control-lg" placeholder="B00NFZ9SHS" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text"  name="ASIN" class="form-control form-control-lg" placeholder=<?php exists('ASIN', 'B00NFZ86NU') ?> aria-label="Username" aria-describedby="basic-addon1">
     
     </div>
 

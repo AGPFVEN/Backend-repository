@@ -2,8 +2,20 @@
 
     include("../database/db.php");
 
-    if($_POST['Insert_into_db'])
+    function convert_post_2_session($example)
     {
+        $_SESSION[$example] = $_POST[$example];
+    }
+
+    convert_post_2_session('FSNKU');
+    convert_post_2_session('ASIN');
+    convert_post_2_session('BIN');
+    convert_post_2_session('DESCRIPTION');
+
+    if(isset($_POST["Insert_into_db"]))
+    {
+
+
         $inputs = array($_POST['FSNKU'], $_POST['ASIN'], $_POST['BIN'], $_POST['DESCRIPTION'], $_POST['count']);
 
         for($i = 1; $i <= 3; $i++)
@@ -23,6 +35,8 @@
     {
 
         $_SESSION['count']++;
+
+        header("Location: ../new_BIN_inventory.php");
 
     }
 
