@@ -57,6 +57,7 @@
 
         </div>
 
+        <!-- Make changes -->
         <input type="text"  name="ASIN" class="form-control form-control-lg" placeholder=<?php exists('ASIN', 'B00NFZ86NU') ?> aria-label="Username" aria-describedby="basic-addon1">
     
     </div>
