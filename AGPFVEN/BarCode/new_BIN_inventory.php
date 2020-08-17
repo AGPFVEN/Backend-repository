@@ -3,6 +3,13 @@
     include("database/db.php");
     include("includes/header.php");
 
+    function exists($does_exists)
+    {
+        if(isset($_SESSION[$does_exists]))
+        {
+            ?> value= <?php echo ($_SESSION[$does_exists]);
+        }
+    }
 ?>
 
 <form  method="POST" action="Create_routine/Intro_data_into_db.php" class="btn btn btn-lg btn-block">
@@ -11,42 +18,13 @@
     <!-- Count of FSNKU -->
     <?php
 
-        if(isset($_SESSION['count']))
+        if(!isset($_SESSION['count']))
         {
-            if($_SESSION['count'] == 1)
-            {
-                $_POST["FSNKU"] = $_SESSION["FSNKU"];
-            }
-            if($_POST["FSNKU"] == $_SESSION["FSNKU"])
-            {
-                $_SESSION['count']++;
-            }
-
-            $asin = $_SESSION['ASIN'];
-            $bin = $_SESSION['BIN'];
-            $description = $_SESSION['DESCRIPTION'];
-        }
-        else
-        {
-            $_SESSION['count'] = 1;
+            $_SESSION['count'] = 0;
         }
 
         $count = $_SESSION['count'];
-
-        function exists($does_exists, $replace)
-        {
-            if(array_key_exists($does_exists ,$_POST))
-            {
-                echo ($_POST[$does_exists]);
-            }
-            else
-            {
-                echo ($replace);
-            }
-        }
-
     ?>
-
 
     <!-- ASIN Input -->
     <div class="tn btn-secondary btn-lg btn-block input-group mb-3">
@@ -58,7 +36,7 @@
         </div>
 
         <!-- Make changes, on everything -->
-        <input type="text"  name="ASIN" class="form-control form-control-lg" placeholder=<?php exists('ASIN', 'B00NFZ86NU') ?> aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text"  name="ASIN" class="form-control form-control-lg" placeholder="B00NFZ86NU" <?php exists('ASIN') ?> aria-label="Username" aria-describedby="basic-addon1">
     
     </div>
 
@@ -71,7 +49,7 @@
         
         </div>
 
-        <input type="text"  name="BIN" class="form-control form-control-lg" placeholder="A002" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text"  name="BIN" class="form-control form-control-lg" placeholder="A002" <?php exists('BIN') ?> aria-label="Username" aria-describedby="basic-addon1">
     
     </div>
 
@@ -86,9 +64,32 @@
 
         <textarea  name="DESCRIPTION" class="form-control form-control-lg" 
             placeholder="LC to SC Fiber Patch Cable Single Mode Duplex - 1m (3.28ft) - 9/125um OS1 / - Beyondtech PureOptics Cable Series" 
-        aria-label="Username" aria-describedby="basic-addon1"></textarea>
+            aria-label="Username" aria-describedby="basic-addon1"><?php 
+            if(isset($_SESSION['DESCRIPTION']))
+            {
+                echo ($_SESSION['DESCRIPTION']);
+            } 
+        ?></textarea>
         
     </div>
+
+    <!--Notification-->
+    <?php if(isset($_SESSION['message'])) 
+    { ?>
+        <div class="row">
+        
+            <div class="btn btn btn-lg btn-block alert alert-<?=$_SESSION['message_type'];?> alert-dismissible fade show" role="alert">
+
+                <?= $_SESSION['message'] ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        
+        </div>
+        <?php
+    }?>
 
     <input type="hidden" name="count" value="<?php echo $count ?>" />
 
