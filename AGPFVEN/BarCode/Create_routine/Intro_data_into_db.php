@@ -16,7 +16,7 @@
     $_SESSION['BIN'] = $inputs[2];
     $_SESSION['DESCRIPTION'] = $inputs[3];
 
-    //POR AQUÍ ESTÁ EL ERROR FUCKKKKKKKKKKKKK
+    //POR AQUÍ ESTÁ EL ERROR 
 
     if($_POST['count'] == 1)
     {
