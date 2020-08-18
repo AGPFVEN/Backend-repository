@@ -18,22 +18,26 @@
 
     //POR AQUÍ ESTÁ EL ERROR FUCKKKKKKKKKKKKK
 
-    if(isset($_SESSION['count']) or $inputs[4] = 0)
+    if($_POST['count'] == 1)
     {
-        if($_SESSION['FSNKU'] == $_POST['FSNKU'])
+        echo $_POST['count'];
+        
+        if($_SESSION['FSNKU'] == apc_fetch('FSNKU'))
         {
             $_SESSION['count']++;
         }
         else
         {
+            echo $_SESSION['FSNKU'];
+
             $_SESSION['message'] = 'Your FSNKU does not match with the previous one';
             $_SESSION['message_type'] = 'danger';
         }
     }
     else
     {
-        $_SESSION['FSNKU'] = $inputs[0];
-        $_SESSION['count'] = $inputs[4];
+        apc_store('FSNKU', $_POST['FSNKU']);
+        $_SESSION['count'] = 1;
     }
 
     if(isset($_POST["Insert_into_db"]))
@@ -46,7 +50,7 @@
     elseif($_POST["Insert_into_count"])
     {
 
-        header("Location: ../new_BIN_inventory.php");
+        // header("Location: ../new_BIN_inventory.php");
 
     }
 
