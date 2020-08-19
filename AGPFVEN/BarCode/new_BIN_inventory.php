@@ -94,11 +94,12 @@
     <input type="hidden" name="count" value="<?php echo $count ?>" />
 
     <?php 
-        if(isset($_SESSION('FSNKU')))
-        { ?>
+        if(isset($_SESSION['FSNKU']))
+        { 
 
-            <input type="hidden" name="saved_FSNKU" value="<?php echo  $_SESSION('FSNKU')?>" />
-
+            $FSNKU_THIS = $_SESSION['FSNKU']; ?>
+            <input type="hidden" name="saved_FSNKU" value="<?php echo $FSNKU_THIS ?>" />
+        
         <?php }
     ?>
 

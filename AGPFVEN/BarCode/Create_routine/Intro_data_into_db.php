@@ -42,7 +42,7 @@
 
     if(isset($_POST['saved_FSNKU']))
     {
-        if($_SESSION['saved_FSNKU'] == $_POST['FSNKU'])
+        if($_POST['saved_FSNKU'] == $_POST['FSNKU'])
         {
             $_SESSION['count']++;
         }
@@ -70,7 +70,7 @@
     elseif($_POST["Insert_into_count"])
     {
 
-        // header("Location: ../new_BIN_inventory.php");
+        header("Location: ../new_BIN_inventory.php");
 
     }
 
