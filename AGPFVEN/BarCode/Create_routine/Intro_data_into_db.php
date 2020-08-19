@@ -18,11 +18,31 @@
 
     //POR AQUÍ ESTÁ EL ERROR 
 
-    if($_POST['count'] == 1)
-    {
-        echo $_POST['count'];
+    // if($_POST['count'] == 1)
+    // {
+    //     echo $_POST['count'];
         
-        if($_SESSION['FSNKU'] == apc_fetch('FSNKU'))
+    //     if($_SESSION['FSNKU'] == apc_fetch('FSNKU'))
+    //     {
+    //         $_SESSION['count']++;
+    //     }
+    //     else
+    //     {
+    //         echo $_SESSION['FSNKU'];
+
+    //         $_SESSION['message'] = 'Your FSNKU does not match with the previous one';
+    //         $_SESSION['message_type'] = 'danger';
+    //     }
+    // }
+    // else
+    // {
+    //     apc_store('FSNKU', $_POST['FSNKU']);
+    //     $_SESSION['count'] = 1;
+    // }
+
+    if(isset($_POST['saved_FSNKU']))
+    {
+        if($_SESSION['saved_FSNKU'] == $_POST['FSNKU'])
         {
             $_SESSION['count']++;
         }
@@ -36,8 +56,8 @@
     }
     else
     {
-        apc_store('FSNKU', $_POST['FSNKU']);
-        $_SESSION['count'] = 1;
+        echo 'this is else';
+        $_SESSION['FSNKU'] = $_POST['FSNKU'];
     }
 
     if(isset($_POST["Insert_into_db"]))

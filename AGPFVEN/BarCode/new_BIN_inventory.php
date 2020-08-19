@@ -93,6 +93,15 @@
 
     <input type="hidden" name="count" value="<?php echo $count ?>" />
 
+    <?php 
+        if(isset($_SESSION('FSNKU')))
+        { ?>
+
+            <input type="hidden" name="saved_FSNKU" value="<?php echo  $_SESSION('FSNKU')?>" />
+
+        <?php }
+    ?>
+
     <!-- FSNKU Input -->
     <div class="tn btn-secondary btn-lg btn-block input-group mb-3">
 
