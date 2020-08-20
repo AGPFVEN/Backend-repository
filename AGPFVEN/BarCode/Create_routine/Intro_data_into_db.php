@@ -56,8 +56,8 @@
     }
     else
     {
-        echo 'this is else';
         $_SESSION['FSNKU'] = $_POST['FSNKU'];
+        $_SESSION['count'] = 1;
     }
 
     if(isset($_POST["Insert_into_db"]))
