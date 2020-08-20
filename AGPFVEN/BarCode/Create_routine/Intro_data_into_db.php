@@ -11,40 +11,35 @@
             $inputs[$i] = 'Not_filled';
         }
     }
-
+    
     $_SESSION['ASIN'] = $inputs[1];
-    $_SESSION['BIN'] = $inputs[2];
     $_SESSION['DESCRIPTION'] = $inputs[3];
+
+    $BIN_query = "SELECT * FROM cable WHERE BIN = '$inputs[2]'";
+    $new_result = mysqli_query($connection, $BIN_query);
+    $result_row = mysqli_fetch_array($new_result);
+
+    if($result_row['BIN'] != NULL)
+    {
+        $_SESSION['message'] = 'Your BIN is being used for the FSNKU '. $result_row['FSNKU'];
+        $_SESSION['message_type'] = 'danger';
+
+        header("Location: ../new_BIN_inventory.php");
+    }
+    else
+    {
+        $_SESSION['BIN'] = $inputs[2];
+    }
 
     //POR AQUÍ ESTÁ EL ERROR 
 
-    // if($_POST['count'] == 1)
-    // {
-    //     echo $_POST['count'];
-        
-    //     if($_SESSION['FSNKU'] == apc_fetch('FSNKU'))
-    //     {
-    //         $_SESSION['count']++;
-    //     }
-    //     else
-    //     {
-    //         echo $_SESSION['FSNKU'];
-
-    //         $_SESSION['message'] = 'Your FSNKU does not match with the previous one';
-    //         $_SESSION['message_type'] = 'danger';
-    //     }
-    // }
-    // else
-    // {
-    //     apc_store('FSNKU', $_POST['FSNKU']);
-    //     $_SESSION['count'] = 1;
-    // }
-
     if(isset($_POST['saved_FSNKU']))
     {
+        $_SESSION['FSNKU'] = $_POST['saved_FSNKU'];
+
         if($_POST['saved_FSNKU'] == $_POST['FSNKU'])
         {
-            $_SESSION['count']++;
+            $_SESSION['count'] = $_POST['count'] + 1;
         }
         else
         {
@@ -58,6 +53,9 @@
     {
         $_SESSION['FSNKU'] = $_POST['FSNKU'];
         $_SESSION['count'] = 1;
+
+        $_SESSION['message'] = 'New FSNKU';
+        $_SESSION['message_type'] = 'danger';
     }
 
     if(isset($_POST["Insert_into_db"]))

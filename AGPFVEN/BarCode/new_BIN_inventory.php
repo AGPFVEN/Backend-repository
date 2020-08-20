@@ -20,7 +20,7 @@
 
         if(!isset($_SESSION['count']))
         {
-            $_SESSION['count'] = 0;
+            $_SESSION['count'] = 1;
         }
 
         $count = $_SESSION['count'];
@@ -98,7 +98,7 @@
         { 
 
             $FSNKU_THIS = $_SESSION['FSNKU']; ?>
-            <input type="hidden" name="saved_FSNKU" value="<?php echo $FSNKU_THIS ?>" />
+            <input type="hidden" name='saved_FSNKU' value="<?php echo $FSNKU_THIS ?>" />
         
         <?php }
     ?>
