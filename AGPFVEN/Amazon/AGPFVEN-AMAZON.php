@@ -24,12 +24,12 @@
     echo $api_result;
 
     // #CVS
-    // $csv_result = explode(', ', $api_result);
+    $csv_result = explode(',', $api_result);
 
-    // $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-TXT.txt', 'w');
+    $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-XSLX.xslx', 'w');
 
-    // fputcsv($gestor, $csv_result);
+    fputcsv($gestor, $csv_result);
 
-    // fclose($gestor);
+    fclose($gestor);
 
 ?>
