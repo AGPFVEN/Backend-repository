@@ -32,6 +32,6 @@
 
     fclose($gestor);
 
-    //this should be done in py
+    //this should be done in py,
 
 ?>
