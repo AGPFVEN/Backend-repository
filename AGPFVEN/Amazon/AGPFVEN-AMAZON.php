@@ -22,6 +22,7 @@
     
     # print the CSV response from Rainforest API
     echo $api_result;
+    echo '------------------------------------------------------------------------------';
 
     // #CVS
     $csv_result = explode(',', $api_result);
@@ -31,6 +32,10 @@
     fputcsv($gestor, $csv_result);
 
     fclose($gestor);
+
+    $py_result = exec("python AGPFVEN-AMAZON.py .$api_result ");
+
+    echo $py_result;
 
     //this should be done in py,
 
