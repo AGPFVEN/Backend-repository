@@ -24,19 +24,21 @@
     echo $api_result;
     echo '------------------------------------------------------------------------------';
 
-    // #CVS
-    $csv_result = explode(',', $api_result);
+    //Save in xlsx
 
-    $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-XSLX.xslx', 'w');
+    $csv_result_erased = str_replace('"', '', $api_result);
+    echo $csv_result_erased;
+
+    // #CVS
+    $csv_result = explode(',',  $csv_result_erased);
+
+    $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-CSV.CSV', 'w');
 
     fputcsv($gestor, $csv_result);
 
     fclose($gestor);
+    
+    echo "\n";
 
-    $py_result = exec("python AGPFVEN-AMAZON.py .$api_result ");
-
-    echo $py_result;
-
-    //this should be done in py,
-
+    var_dump($csv_result);
 ?>
