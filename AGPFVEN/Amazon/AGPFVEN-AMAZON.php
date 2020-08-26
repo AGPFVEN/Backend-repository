@@ -11,6 +11,24 @@
     // # print the CSV response from Rainforest API echo 
     // $api_result;
 
+    function get_string_between($string, $start, $end)
+    {
+        $string =' ' . $string;
+        $ini = strpos($start, $string);
+
+        if($ini == 0)
+        {
+            return '';
+        }
+
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        $parsed_string = substr($string, $ini, $len);
+        $free_commas_string = str_replace(',', ';', '');
+
+
+    }
+
     # set up the request parameters 
     $queryString = http_build_query([ 'api_key' => '757A4FBFF891445B9FEF6DE3441F190F', 'type' => 'search', 'amazon_domain' => 'amazon.com', 'search_term' => 'lc to lc fiber patch cable', 'output' => 'csv', 'customer_zipcode' => '33180', 'language' => 'en_US' ]); 
 
@@ -24,13 +42,27 @@
     echo $api_result;
     echo '------------------------------------------------------------------------------';
 
-    //Save in xlsx
+    $api_result_step_one =' ' . $api_result;
+    $ini = strpos($api_result_step_one, '"');
 
-    $csv_result_erased = str_replace('"', '', $api_result);
-    echo $csv_result_erased;
+    if($ini == 0)
+    {
+        return '';
+    }
+
+    $ini += strlen('"');
+    $len = strpos($api_result_step_one, '"', $ini) - $ini;
+    $parsed_string = substr($api_result_step_one, $ini, $len);
+    $free_commas_string = str_replace(',', ';', '');
+    $ini =strpos()
+    
+    // Erase commas
+    $csv_result_erased_1_2 = str_replace('"', '', $api_result);
+    $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
+    echo $csv_result_erased_2_2;
 
     // #CVS
-    $csv_result = explode(',',  $csv_result_erased);
+    $csv_result = explode(',',  $csv_result_erased_2_2);
 
     $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-CSV.CSV', 'w');
 
@@ -40,5 +72,6 @@
     
     echo "\n";
 
+    //See variables
     var_dump($csv_result);
 ?>
