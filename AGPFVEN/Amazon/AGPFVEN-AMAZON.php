@@ -31,7 +31,14 @@
     echo $api_result;
     echo '-------------------------------------------------------------------------------------------------------------------------------------------------------';
     
-    // Erase commas
+    //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
+    $current_comma_pos = strpos($api_result, ',');
+    if($current_comma_pos === true)
+    {
+        if()
+    }
+
+    // Erase quotes
     $csv_result_erased_1_2 = str_replace('"', '', $api_result);
     $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
     echo $csv_result_erased_2_2;
