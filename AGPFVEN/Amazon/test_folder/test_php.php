@@ -1,13 +1,9 @@
 <?php
 
-    echo ('""');
+    $test_string = ' holao mundo';
+    $comma = strpos($test_string, 'a');
+    $test_string_cut_1 = substr($test_string, $comma -1, 1);
 
-    $test_variable = "text test";
-
-    // header("Location: test_php_2.php");
-
-    $py_result = exec("python3 test.py '$test_variable' ");
-
-    var_dump($py_result);
+    echo $test_string_cut_1;
 
 ?>
