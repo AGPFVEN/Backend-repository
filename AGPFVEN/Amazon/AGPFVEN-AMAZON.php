@@ -38,7 +38,7 @@
 
     if($current_comma_pos < $current_second_parentesis_pos)
     {
-        str_replace(',', ';', '')
+        
     }
 
     // Erase quotes
