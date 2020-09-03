@@ -30,21 +30,23 @@
     # print the CSV response from Rainforest API
     echo $api_result;
     echo '-------------------------------------------------------------------------------------------------------------------------------------------------------';
-    
+
+    // Erase quotes
+    $csv_result_erased_1_2 = str_replace('"', '', $api_result);
+    $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
+    echo $csv_result_erased_2_2;
+
     //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
-    $current_first_parentesis_pos = strpos($api_result, '('); //Find comma
-    $current_second_parentesis_pos = strpos($api_result, ')'); //Find comma
-    $current_comma_pos = strpos($api_result, ',', $current_first_parentesis_pos); //Find comma
+    $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '('); //Find comma
+    $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')'); //Find comma
+    $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); //Find comma
 
     if($current_comma_pos < $current_second_parentesis_pos)
     {
         //solution
     }
 
-    // Erase quotes
-    $csv_result_erased_1_2 = str_replace('"', '', $api_result);
-    $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
-    echo $csv_result_erased_2_2;
+    echo $api_result;
 
     // #CVS
     $csv_result = explode(',',  $api_result);
