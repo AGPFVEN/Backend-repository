@@ -8,31 +8,36 @@
     ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,5,"""LC to LC Fiber Patch Cable Multimode Duplex - 5m (16.4ft) - 50/125um OM3 10G LSZH - Beyondtech PureOptics Cable Series""","""B00IS6PTY0""","""https://www.amazon.com/dp/B00IS6PTY0""","""https://m.media-amazon.com/images/I/81toYD9onlL._AC_UY218_.jpg""",4.8,115,false,false,"""USD""",13.68,,"
     ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,6,"""LC to LC Fiber Cable Multimode Fiber Patch Cable"," AllChinaFiber Duplex Fiber Optic Cable 62.5/125 OFNR (6FT"," OM1"," Orange)""","""B087CQXK4K""","""https://www.amazon.com/dp/B087CQXK4K""","""https://m.media-amazon.com/images/I/61R792WzNPL._AC_UY218_.jpg""",4.7,7,false,false,"""USD""",12.99,,"';
     
+    // Erase quotes
+    $csv_result_erased_1_2 = str_replace('"', '', $test_string);
+    $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
+    echo $csv_result_erased_2_2;
+
     //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
     $last_comma_pos = 0;
-    $current_first_parentesis_pos = strpos($test_string, '(', $last_comma_pos); //Find comma
-    $current_second_parentesis_pos = strpos($test_string, ')', $current_first_parentesis_pos); //Find comma
-    $current_comma_pos = strpos($test_string, ',', $current_first_parentesis_pos); //Find comma
+    $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $last_comma_pos); //Find comma
+    $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos); //Find comma
+    $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); //Find comma
 
-    while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
-    {
-        $current_first_parentesis_pos = strpos($test_string, '(', $current_first_parentesis_pos + 1); //Find comma
-        $current_second_parentesis_pos = strpos($test_string, ')', $current_first_parentesis_pos); //Find comma
-        $current_comma_pos = strpos($test_string, ',', $current_first_parentesis_pos); //Find comma
-    }
+    // while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
+    // {
+    //     $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1); //Find comma
+    //     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos); //Find comma
+    //     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); //Find comma
+    // }
 
     if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
     {
         //solution
-        $api_result_modifiedD = substr_replace($test_string, 'P', $current_first_parentesis_pos, 1);
+        $api_result_modifiedD = substr_replace($csv_result_erased_2_2, 'P', $current_first_parentesis_pos, 1);
         $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
-        $api_result_modifiedD = substr_replace($test_string, 'P', $current_second_parentesis_pos, 1);
+        $api_result_modifiedD = substr_replace($csv_result_erased_2_2, 'P', $current_second_parentesis_pos, 1);
         $last_comma_pos = $current_comma_pos;
     }
 
     // while()
     // {
-    //     $api_result_modified = substr_replace($test_string, ';', $current_comma_pos, 1);
+    //     $api_result_modified = substr_replace($csv_result_erased_2_2, ';', $current_comma_pos, 1);
     //     $last_comma_pos = $current_comma_pos;
 
 
