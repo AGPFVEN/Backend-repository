@@ -19,12 +19,12 @@
     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); 
 
-    // while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
-    // {
-    //     $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1);
-    //     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
-    //     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos);
-    // }
+    while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
+    {
+        $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1);
+        $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
+        $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos);
+    }
 
     if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
     {
@@ -50,6 +50,8 @@
 
     // #CVS
     $csv_result = explode(',',  $api_result_modified);
+
+    //Apartir del 18 se puede utilizar 
 
     $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-TEST-CSV.CSV', 'w');
 
