@@ -21,9 +21,9 @@
 
     // while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
     // {
-    //     $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1); //Find comma
-    //     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos); //Find comma
-    //     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); //Find comma
+    //     $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1);
+    //     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
+    //     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos);
     // }
 
     if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
