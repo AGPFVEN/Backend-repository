@@ -13,9 +13,12 @@
     '""search""","""amazon.com""","""lc to lc fiber patch cable""",,,4,"""Fiber Patch Cable"," VANDESAIL 10G Gigabit Fiber Optic Cables with LC to LC Multimode OM3 Duplex 50/125 OFNP (1M"," OM3-5Pack)""","""B01LN5XOCG""","""https://www.amazon.com/dp/B01LN5XOCG""","""https://m.media-amazon.com/images/I/511SNO1ADWL._AC_UY218_.jpg""",4.8,99,false,false,"""USD""",23.99,,"';
 
     // Erase quotes
-    $csv_result_erased_1_2 = str_replace('"', '', $test_string_2);
+    $csv_result_erased_1_2 = str_replace('"', '', $test_string_1);
     $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
-    echo $csv_result_erased_2_2;
+    // echo $csv_result_erased_2_2;
+
+    //grups of lines
+    $csvgroups = explode("\n", $csv_result_erased_2_2);
 
     //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
     $last_comma_pos = 0;
@@ -23,34 +26,29 @@
     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); 
 
-    while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
-    {
-        $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1);
-        $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
-        $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos);
-    }
+    // while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
+    // {
+    //     $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1);
+    //     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
+    //     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos);
+    // }
 
-    if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
-    {
+    // if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
+    // {
         //solution
         $api_result_modifiedD = substr_replace($csv_result_erased_2_2, 'P', $current_first_parentesis_pos, 1);
         $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
-        $api_result_modifiedD = substr_replace($csv_result_erased_2_2, 'P', $current_second_parentesis_pos, 1);
+        $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
         $last_comma_pos = $current_comma_pos;
-    }
-
-    // while()
-    // {
-    //     $api_result_modified = substr_replace($csv_result_erased_2_2, ';', $current_comma_pos, 1);
-    //     $last_comma_pos = $current_comma_pos;
-
-
     // }
 
-    echo $api_result_modified;
+    echo $api_result_modifiedD;
+    echo "\n";
     echo strlen($api_result_modified);
-    echo ' ';
+    echo "\n";
     echo $current_second_parentesis_pos;
+    echo "\n";
+    var_dump($csvgroups);
 
     // #CVS
     $csv_result = explode(',',  $api_result_modified);
