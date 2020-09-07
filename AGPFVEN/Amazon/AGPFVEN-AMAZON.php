@@ -1,24 +1,5 @@
 <?php
 
-    //
-    // function get_string_between($string, $start, $end)
-    // {
-    //     $string =' ' . $string;
-    //     $ini = strpos($start, $string);
-
-    //     if($ini == 0)
-    //     {
-    //         return '';
-    //     }
-
-    //     $ini += strlen($start);
-    //     $len = strpos($string, $end, $ini) - $ini;
-    //     $parsed_string = substr($string, $ini, $len);
-    //     $free_commas_string = str_replace(',', ';', '');
-
-
-    // }
-
     # set up the request parameters 
     $queryString = http_build_query([ 'api_key' => '757A4FBFF891445B9FEF6DE3441F190F', 'type' => 'search', 'amazon_domain' => 'amazon.com', 'search_term' => 'lc to lc fiber patch cable', 'output' => 'csv', 'customer_zipcode' => '33180', 'language' => 'en_US' ]); 
 
