@@ -15,32 +15,50 @@
     // Erase quotes
     $csv_result_erased_1_2 = str_replace('"', '', $test_string_1);
     $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
-    // echo $csv_result_erased_2_2;
 
     //grups of lines
     $csvgroups = explode("\n", $csv_result_erased_2_2);
 
+    //search comma in array
+    for($i = 0; $i < count($csvgroups);  $i++)
+    {
+        // $last_comma_pos = 1;
+        $current_first_parentesis_pos = strpos($csvgroups[$i], '(', 1);
+        $current_second_parentesis_pos = strpos($csvgroups[$i], ')', $current_first_parentesis_pos);
+        $current_comma_pos = strpos($csvgroups[$i], ',', $current_first_parentesis_pos);
+
+        // if($current_comma_pos === FALSE)
+        // {
+        //     break;
+        // }
+        // else
+        // {
+        
+        
+        if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
+        {
+            $api_result_modifiedD = substr_replace($csvgroups[$i], 'P', $current_first_parentesis_pos, 1);
+            $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
+            $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
+            $last_comma_pos = $current_comma_pos;
+
+            $csvgroups[$i] = $api_result_modified;
+        }
+        // }
+    }
+
+
     //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
-    $last_comma_pos = 0;
-    $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $last_comma_pos);
-    $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
-    $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); 
+    // $last_comma_pos = 0;
+    // $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $last_comma_pos);
+    // $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
+    // $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); 
 
-    // while($current_comma_pos > $current_second_parentesis_pos OR $current_comma_pos < $current_first_parentesis_pos OR $current_first_parentesis_pos != FALSE)
-    // {
-    //     $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '(', $current_first_parentesis_pos + 1);
-    //     $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')', $current_first_parentesis_pos);
-    //     $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos);
-    // }
+    // $api_result_modifiedD = substr_replace($csv_result_erased_2_2, 'P', $current_first_parentesis_pos, 1);
+    // $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
+    // $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
+    // $last_comma_pos = $current_comma_pos;
 
-    // if($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
-    // {
-        //solution
-        $api_result_modifiedD = substr_replace($csv_result_erased_2_2, 'P', $current_first_parentesis_pos, 1);
-        $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
-        $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
-        $last_comma_pos = $current_comma_pos;
-    // }
 
     echo $api_result_modifiedD;
     echo "\n";
