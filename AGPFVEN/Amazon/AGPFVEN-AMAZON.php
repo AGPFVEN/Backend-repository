@@ -16,33 +16,47 @@
     // Erase quotes
     $csv_result_erased_1_2 = str_replace('"', '', $api_result);
     $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
-    echo $csv_result_erased_2_2;
 
-    //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
-    $current_first_parentesis_pos = strpos($csv_result_erased_2_2, '('); //Find comma
-    $current_second_parentesis_pos = strpos($csv_result_erased_2_2, ')'); //Find comma
-    $current_comma_pos = strpos($csv_result_erased_2_2, ',', $current_first_parentesis_pos); //Find comma
+    //grups of lines
+    $csvgroups = explode("\n", $csv_result_erased_2_2);
 
-    if($current_comma_pos < $current_second_parentesis_pos)
+    //search comma in array
+    for($i = 0; $i < count($csvgroups);  $i++)
     {
-        //solution
+        $checkpoint = 1;
+
+        //search parentesis
+        do
+        {
+            $current_first_parentesis_pos = strpos($csvgroups[$i], '(', $checkpoint);
+            $current_second_parentesis_pos = strpos($csvgroups[$i], ')', $current_first_parentesis_pos);
+            $current_comma_pos = strpos($csvgroups[$i], ',', $current_first_parentesis_pos);
+
+            //change commas for dot comma
+            while($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos && $current_first_parentesis_pos != 0)
+            {
+                $api_result_modifiedD = substr_replace($csvgroups[$i], '(', $current_first_parentesis_pos, 1);
+                $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
+                $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
+                $last_comma_pos = $current_comma_pos;
+
+                $csvgroups[$i] = $api_result_modified;
+
+                $current_comma_pos = strpos($csvgroups[$i], ',', $last_comma_pos);
+            }
+
+            $checkpoint = $current_first_parentesis_pos + 1;
+        } while($current_first_parentesis_pos != 0);
     }
 
-    echo $api_result;
+    // $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-CSV.CSV', 'w');
 
-    // #CVS
-    $csv_result = explode(',',  $api_result);
+    // fputcsv($gestor, $csv_result);
 
-    // echo $csv_result;
-
-    $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-CSV.CSV', 'w');
-
-    fputcsv($gestor, $csv_result);
-
-    fclose($gestor);
+    // fclose($gestor);
     
     echo "\n";
 
     //See variables
-    var_dump($csv_result);
+    var_dump($csvgroups);
 ?>
