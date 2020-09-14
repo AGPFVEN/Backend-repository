@@ -1,32 +1,3 @@
-<!-- Limitation: 1000 times in one day between all the servers -->
-<HTML>
-
-<form action="" method="post"></form>
-
-</HTML>
-
-<script>
-
-    var x = " ";
-    function getLocation() 
-    {
-        if (navigator.geolocation) 
-        {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        }
-        else 
-        {
-            x = "Geolocation is not supported by this browser.";
-        }
-    }
-
-    function showPosition(position) 
-    {
-        x = "Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude;
-    }
-
-</script>
-
 <?php
     //set up db
     $connection = mysqli_connect(
