@@ -1,5 +1,5 @@
 <?php
-    //set up db
+    //set up db, studying consumes a lot of time
     $connection = mysqli_connect(
         'localhost',
         'root',
