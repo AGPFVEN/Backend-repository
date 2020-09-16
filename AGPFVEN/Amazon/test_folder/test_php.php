@@ -1,94 +1,11 @@
 <?php
 
-//debes buscar la manera de solucionar los gaps dentro de grupos
-    $test_string_1 =
-    '""search""","""amazon.com""","""lc to lc fiber patch cable""",,,1,"""LC to LC Fiber Patch Cable Single Mode Duplex - 3m (9.84ft) - 9/125um OS1 LSZH - Beyondtech PureOptics Cable Series""","""B00IXP05IQ""","""https://www.amazon.com/dp/B00IXP05IQ""","""https://m.media-amazon.com/images/I/81fmdyLusCL._AC_UY218_.jpg""",4.8,188,false,true,"""USD""",9.99,,"
-    ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,2,"""LC to LC Fiber Patch Cable Multimode Duplex - 5m (16.4ft) - 50/125um OM3 10G LSZH - Beyondtech PureOptics Cable Series""","""B00IS6PTY0""","""https://www.amazon.com/dp/B00IS6PTY0""","""https://m.media-amazon.com/images/I/81toYD9onlL._AC_UY218_.jpg""",4.8,115,false,true,"""USD""",13.68,,"
-    ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,3,"""LC to LC Fiber Patch Cable Single Mode Duplex - 3m (9.84ft) - 9/125um OS1 LSZH - Beyondtech PureOptics Cable Series""","""B00IXP05IQ""","""https://www.amazon.com/dp/B00IXP05IQ""","""https://m.media-amazon.com/images/I/81fmdyLusCL._AC_UY218_.jpg""",4.8,188,false,false,"""USD""",9.99,,"
-    ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,4,"""Fiber Patch Cable"," VANDESAIL 10G Gigabit Fiber Optic Cables with LC to LC Multimode OM3 Duplex 50/125 OFNP (1M"," OM3-5Pack)""","""B01LN5XOCG""","""https://www.amazon.com/dp/B01LN5XOCG""","""https://m.media-amazon.com/images/I/511SNO1ADWL._AC_UY218_.jpg""",4.8,99,false,false,"""USD""",23.99,,"
-    ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,5,"""LC to LC Fiber Patch Cable Multimode Duplex - 5m (16.4ft) - 50/125um OM3 10G LSZH - Beyondtech PureOptics Cable Series""","""B00IS6PTY0""","""https://www.amazon.com/dp/B00IS6PTY0""","""https://m.media-amazon.com/images/I/81toYD9onlL._AC_UY218_.jpg""",4.8,115,false,false,"""USD""",13.68,,"
-    ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,6,"""LC to LC Fiber Cable Multimode Fiber (Patch) Cable"," AllChinaFiber Duplex Fiber Optic Cable 62.5/125 OFNR (6FT"," OM1"," Orange)""","""B087CQXK4K""","""https://www.amazon.com/dp/B087CQXK4K""","""https://m.media-amazon.com/images/I/61R792WzNPL._AC_UY218_.jpg""",4.7,7,false,false,"""USD""",12.99,,"';
+    //Prepare stopwatch
+    $w = new HRTime\StopWatch;
 
-    $test_string_2 =
-    '""search""","""amazon.com""","""lc to lc fiber patch cable""",,,4,"""Fiber Patch Cable"," VANDESAIL 10G Gigabit Fiber Optic Cables with LC to LC Multimode OM3 Duplex 50/125 OFNP (1M"," OM3-5Pack)""","""B01LN5XOCG""","""https://www.amazon.com/dp/B01LN5XOCG""","""https://m.media-amazon.com/images/I/511SNO1ADWL._AC_UY218_.jpg""",4.8,99,false,false,"""USD""",23.99,,"';
+    //start
+    $w -> start();
 
-    // Erase quotes
-    $csv_result_erased_1_2 = str_replace('"', '', $test_string_1);
-    $csv_result_erased_2_2 = str_replace('"', '', $csv_result_erased_1_2);
-
-    //grups of lines
-    $csvgroups = explode("\n", $csv_result_erased_2_2);
-
-    //search comma in array
-    for($i = 0; $i < count($csvgroups);  $i++)
-    {
-        $checkpoint = 1;
-
-        //search parentesis
-        do
-        {
-            $current_first_parentesis_pos = strpos($csvgroups[$i], '(', $checkpoint);
-            $current_second_parentesis_pos = strpos($csvgroups[$i], ')', $current_first_parentesis_pos);
-            $current_comma_pos = strpos($csvgroups[$i], ',', $current_first_parentesis_pos);
-
-            //change commas for dot comma
-            while($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos && $current_first_parentesis_pos != 0)
-            {
-                $api_result_modifiedD = substr_replace($csvgroups[$i], '(', $current_first_parentesis_pos, 1);
-                $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
-                $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
-                $last_comma_pos = $current_comma_pos;
-
-                $csvgroups[$i] = $api_result_modified;
-
-                $current_comma_pos = strpos($csvgroups[$i], ',', $last_comma_pos);
-            }
-
-            $checkpoint = $current_first_parentesis_pos + 1;
-        } while($current_first_parentesis_pos != 0);
-    }
-
-
-    //Erase useless  commas//////////////////////////////////////////////////////////////////////////////////////////
-    // for($i = 0; $i < count($csvgroups);  $i++)
-    // {
-    //     // $last_comma_pos = 1;
-    //     $current_first_parentesis_pos = strpos($csvgroups[$i], '(', 1);
-    //     $current_second_parentesis_pos = strpos($csvgroups[$i], ')', $current_first_parentesis_pos);
-    //     $current_comma_pos = strpos($csvgroups[$i], ',', $current_first_parentesis_pos);
-        
-    //     while($current_comma_pos < $current_second_parentesis_pos && $current_comma_pos > $current_first_parentesis_pos)
-    //     {
-    //         $api_result_modifiedD = substr_replace($csvgroups[$i], '(', $current_first_parentesis_pos, 1);
-    //         $api_result_modified = substr_replace($api_result_modifiedD, ';', $current_comma_pos, 1);
-    //         $api_result_modifiedD = substr_replace($api_result_modified, ')', $current_second_parentesis_pos, 1);
-    //         $last_comma_pos = $current_comma_pos;
-
-    //         $csvgroups[$i] = $api_result_modified;
-
-    //         $current_comma_pos = strpos($csvgroups[$i], ',', $last_comma_pos);
-    //     }
-    //     // }
-    // }
-
-
-    // echo $api_result_modifiedD;
-    // echo "\n";
-    // echo strlen($api_result_modified);
-    // echo "\n";
-    // echo $current_second_parentesis_pos;
-    // echo "\n";
-    var_dump($csvgroups);
-
-    // #CVS
-    $csv_result = explode(',',  $api_result_modified);
-
-    //Apartir del 18 se puede utilizar 
-
-    $gestor = fopen('D:\xampp-Server\htdocs\Backend-repository\AGPFVEN\Amazon\AGPFVEN-AMAZON-TEST-CSV.CSV', 'w');
-
-    fputcsv($gestor, $csv_result);
-
-    fclose($gestor);
+    
 
 ?>
