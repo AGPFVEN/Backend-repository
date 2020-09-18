@@ -79,5 +79,7 @@
 
         $query = "INSERT INTO amazon_test (request_parameters_type, request_parameters_amazon_domain, request_parameters_search_term, request_parameters_sort_by, request_parameters_page, search_results_position, search_results_title, search_results_asin, search_results_link, search_results_image, search_results_rating, search_results_ratings_total, search_results_is_prime, search_results_sponsored, search_results_price_currency, search_results_price_value, search_results_page, search_results_add_on_item_is_add_on_item, location) VALUES ('$csvgroups_individual[0]', '$csvgroups_individual[1]', '$csvgroups_individual[2]', '$csvgroups_individual[3]', '$csvgroups_individual[4]', '$csvgroups_individual[5]', '$csvgroups_individual[6]', '$csvgroups_individual[7]', '$csvgroups_individual[8]', '$csvgroups_individual[9]', '$csvgroups_individual[10]', '$csvgroups_individual[11]', '$csvgroups_individual[12]', '$csvgroups_individual[13]', '$csvgroups_individual[14]', '$csvgroups_individual[15]', '$csvgroups_individual[16]', '$csvgroups_individual[17]', '$input_location')";
         $result = mysqli_query($connection, $query);
+
+        //Set timer
     }
 ?>
