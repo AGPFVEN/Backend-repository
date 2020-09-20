@@ -7,6 +7,7 @@
         'php_mysql_crud_database'
     );
 
+    //Modify settings to be limitless (infinite)
     ini_set("max_execution_time", "0");
 
     if(!isset($_POST['Location']))
