@@ -10,11 +10,6 @@
     //Modify settings to be limitless (infinite)
     ini_set("max_execution_time", "0");
 
-    if(!isset($_POST['Location']))
-    {
-        header("Location: http://localhost/Backend-repository/AGPFVEN/Amazon/Input_1.php");
-    }
-
     //Location
     $input_location = $_POST['Location'];
 
@@ -29,6 +24,7 @@
         // curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         // $api_result = curl_exec($ch);
 
+        //String Aux
         $api_result=
         '""search""","""amazon.com""","""lc to lc fiber patch cable""",,,1,"""LC to LC Fiber Patch Cable Single Mode Duplex - 3m (9.84ft) - 9/125um OS1 LSZH - Beyondtech PureOptics Cable Series""","""B00IXP05IQ""","""https://www.amazon.com/dp/B00IXP05IQ""","""https://m.media-amazon.com/images/I/81fmdyLusCL._AC_UY218_.jpg""",4.8,188,false,true,"""USD""",9.99,,"
         ""search""","""amazon.com""","""lc to lc fiber patch cable""",,,2,"""LC to LC Fiber Patch Cable Multimode Duplex - 5m (16.4ft) - 50/125um OM3 10G LSZH - Beyondtech PureOptics Cable Series""","""B00IS6PTY0""","""https://www.amazon.com/dp/B00IS6PTY0""","""https://m.media-amazon.com/images/I/81toYD9onlL._AC_UY218_.jpg""",4.8,115,false,true,"""USD""",13.68,,"
