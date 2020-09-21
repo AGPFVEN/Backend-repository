@@ -83,7 +83,4 @@
         //Set timer
         sleep(60);
     }
-    
-    //Refresh
-    header("Location: http://localhost/Backend-repository/AGPFVEN/Amazon/AGPFVEN-AMAZON.php");
 ?>
