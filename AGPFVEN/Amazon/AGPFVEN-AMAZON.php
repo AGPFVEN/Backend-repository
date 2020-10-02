@@ -13,6 +13,8 @@
     //Location
     $input_location = $_POST['Location'];
 
+    $query = 
+
     while(1)
     {
         // # set up the request parameters 
