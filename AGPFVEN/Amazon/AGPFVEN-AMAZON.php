@@ -13,7 +13,7 @@
     //Location
     $input_location = $_POST['Location'];
 
-    // $query = "SELECT * FROM amazon_test WHERE "
+    $query = "SELECT * FROM amazon_"
 
     while(1)
     {
