@@ -9,11 +9,13 @@
 
     $time_to_repeat = 1;
     //Get the start time
-    $query = "SELECT Local_time WHERE id = COUNT(*) FROM amazon_test";
+    $query = "SELECT * FROM amazon_test WHERE id = (SELECT COUNT(*) FROM amazon_test)";
     $result_time = mysqli_query($connection, $query);
+    $row = mysqli_fetch_array($result_time);
 
-    //wait till the time finishes 
-    $time_to_wait = date('H:i'); //- ($result_time);
-    print($time_to_wait);
+    //wait till the time finishes
+    date('Y-m-d H:i:s');
+    print($row['Local_time']);
+    print(date('Y-m-d H:i:s'));
 
 ?>

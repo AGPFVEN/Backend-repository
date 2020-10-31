@@ -17,7 +17,7 @@
     $time_to_repeat = 60;
 
     //Get the start time
-    $query = "SELECT * FROM amazon_test WHERE id = SELECT COUNT(*) FROM amazon_test";
+    $query = "SELECT * FROM amazon_test WHERE id = (SELECT COUNT(*) FROM amazon_test)";
     $result_time = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result_time);
 
