@@ -21,6 +21,8 @@
     $result_time = mysqli_query($connection, $query);
     $row = mysqli_fetch_array($result_time);
 
+    //Start date
+
     //wait till the time finishes 
     $time_to_wait = ($row['Local_time'] + $time_to_repeat);
 
@@ -97,5 +99,19 @@
 
         //Set timer
         sleep($time_to_repeat);
+    }
+
+    //Date Adder
+    def Date_adder($dates)
+    {
+        foreach($dates as $date)
+        {
+            //divide date in 2 (the last update and that moment)
+            $array_dates_decomposed = explode(' ', $date);
+            $array_today_decomposed = explode(' ', date('Y-m-d H:i:s'));
+
+            //divide hour in 3 (hour, min and sec)
+            
+        }
     }
 ?>
