@@ -11,7 +11,7 @@
     date_default_timezone_set('UTC');
 
     //Time to repeat in seconds
-    $time_to_repeat = 3600;
+    $time_to_repeat = 61;
 
     //Get the start time
     $query = "SELECT * FROM amazon_test WHERE id = (SELECT COUNT(*) FROM amazon_test)";
@@ -46,6 +46,11 @@
                 $final_min = $provisional_min % 60;
                 $final_hour = intval($hour_min_sec_lastdate[0]) + round($provisional_min / 60);
             }
+            else
+            {
+                $final_min = $provisional_min;
+                $final_hour = intval($hour_min_sec_lastdate[0]);
+            }
         }
         echo format_to_sec($final_hour), ":", format_to_sec($final_min), ":", format_to_sec($final_sec);
     }
@@ -76,6 +81,13 @@
         {
             return $seconds;
         }
+    }
+
+    //
+    function truncate_($num)
+    {
+        $provisional_num = intval(substr(strval($num), 0, 1));
+        return $provisional_num;
     }
 
 ?>
