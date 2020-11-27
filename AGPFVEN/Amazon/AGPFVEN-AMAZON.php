@@ -102,16 +102,112 @@
     }
 
     //Date Adder
-    def Date_adder($dates)
+    function Date_adder($date, $to_repeat) // I could have done this far complex and functional but I try to code readable code
     {
-        foreach($dates as $date)
-        {
-            //divide date in 2 (the last update and that moment)
-            $array_dates_decomposed = explode(' ', $date);
-            $array_today_decomposed = explode(' ', date('Y-m-d H:i:s'));
+        //divide date in 2 (the last update and that moment)
+        $array_dates_decomposed = explode(' ', $date);
 
-            //divide hour in 3 (hour, min and sec)
-            
+        //divide date in 3(year, month, day)
+        $year_month_day = explode('-', $array_dates_decomposed[0]);
+
+        //divide hour in 3 (hour, min and sec)
+        $hour_min_sec_lastdate = explode(':', $array_dates_decomposed[1]);
+
+        //Add sec
+        $provisional_sec = intval($hour_min_sec_lastdate[2]) + $to_repeat;
+
+        //finals just in case they are not necessary
+        $final_sec = $provisional_sec;
+        $final_min = intval($hour_min_sec_lastdate[1]);
+        $final_hour = intval($hour_min_sec_lastdate[0]);
+        $final_day = intval($year_month_day[2]);
+        $final_month = intval($year_month_day[1]);
+        $final_year = intval($year_month_day[0]);
+
+
+        //Get final_date
+        if($provisional_sec >= 60)
+        {
+            $final_sec = $provisional_sec % 60;
+            $provisional_min = intval($hour_min_sec_lastdate[1]) + truncate_($provisional_sec / 60);
+
+            if($provisional_min >= 60)
+            {
+                $final_min = $provisional_min % 60;
+                $provisional_hour = intval($hour_min_sec_lastdate[0]) + truncate_($provisional_min / 60);
+
+                if($provisional_hour >= 24)
+                {
+                    $final_hour = ($provisional_hour % 24);
+                    $provisional_day = intval($year_month_day[2]) + truncate_($provisional_hour / 24);
+
+                    if(cal_days_in_month(CAL_GREGORIAN, intval($year_month_day[1]), intval($year_month_day[0])) < $provisional_day)
+                    {
+                        $final_day = $provisional_day - cal_days_in_month(CAL_GREGORIAN, intval($year_month_day[1]), intval($year_month_day[0]));
+                        $provisional_month = intval($year_month_day[1]) + 1;
+
+                        if(12 < $provisional_month)
+                        {
+                            $final_month = $provisional_month - 12;
+                            $final_year = intval($year_month_day[0]) + 1;
+                        }
+                        else
+                        {
+                            $final_month = $provisional_month;
+                        }
+
+                    }
+                    else
+                    {
+                        $final_day = $provisional_day;
+                    }
+                }
+                else
+                {
+                    $final_hour = $provisional_hour;
+                }
+            }
+            else
+            {
+                $final_min = $provisional_min;
+            }
         }
+        echo $final_year, '-', format_to_sec(truncate_($final_month)) , '-', format_to_sec(truncate_($final_day)), ' ',format_to_sec(truncate_($final_hour)), ":", format_to_sec(truncate_($final_min)), ":", format_to_sec(truncate_($final_sec));
+    }
+    
+    //Facilitate Calculus
+    function hexdecimal_adder($sec_function, $min_function ,$adder)
+    {
+        $provisional = intval($sec_function) + $adder;
+
+        if($provisional >= 60)
+        {
+            $final_sec = $provisional % 60;
+            $add_to_mins = round($provisional / 60);
+            $final_min = intval($min_function) + $add_to_mins;
+        }
+    }
+
+    //Format (now is formatting just the seconds, mins and hours)
+    function format_to_sec($seconds)
+    {
+        if($seconds < 10)
+        {
+            $sec = "0";
+            $sec .= strval($seconds);
+            return $sec;
+        }
+        else
+        {
+            return $seconds;
+        }
+    }
+
+    //Truncate numbers
+    function truncate_($num)
+    {
+        $num_parts = explode(',', $num);
+        $provisional_num = intval($num_parts[0]);
+        return $provisional_num;
     }
 ?>
