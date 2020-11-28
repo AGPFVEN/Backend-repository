@@ -20,9 +20,11 @@
 
     //wait till the time finishes
     // print($row['Local_time']);
-    print('2020-11-31 23:45:01');
+
+    $test_var = '2020-11-31 23:45:01';
+    print($test_var);
     print("\r\n");
-    Date_adder('2020-12-31 23:45:01', $time_to_repeat);
+    substarct_sec($test_var, Date_adder($test_var, $time_to_repeat));
 
     // //rest seconds
     function substarct_sec($datefrom, $datefor)
@@ -30,55 +32,59 @@
         $numbers_datefrom = Get_numbers_of_date($datefrom);
         $numbers_datefor = Get_numbers_of_date($datefor);
 
-        
+        $sec_datefrom = intval($numbers_datefrom[0][0]) * 3.1536 * pow(10, 7) + 
+            intval($numbers_datefrom[0][1]) * (3.1536 * pow(10, 7)) / 12 + //arreglar meses ???
+            intval($numbers_datefrom[0][2]) * 86400 +
+            intval($numbers_datefrom[1][0]) * 3600
+            intval($numbers_datefrom[1][1]) * 60
+            intval($numbers_datefrom[1][2]);
+
+        echo $sec_datefrom;
     }
     
     //Date Adder
-    function Date_adder($date, $to_repeat) // I could have done this far complex and functional but I try to code readable code
+    function Date_adder($date, $to_repeat)
     {
+        // [0] -> year,month,day   [1] -> hour,min,sec
         $principal_array = Get_numbers_of_date($date);
 
-        $year_month_day = $principal_array[0];
-        $hour_min_sec_lastdate = $principal_array[1];
-
-
         //Add sec
-        $provisional_sec = intval($hour_min_sec_lastdate[2]) + $to_repeat;
+        $provisional_sec = intval($principal_array[1][2]) + $to_repeat;
 
         //finals just in case they are not necessary
         $final_sec = $provisional_sec;
-        $final_min = intval($hour_min_sec_lastdate[1]);
-        $final_hour = intval($hour_min_sec_lastdate[0]);
-        $final_day = intval($year_month_day[2]);
-        $final_month = intval($year_month_day[1]);
-        $final_year = intval($year_month_day[0]);
+        $final_min = intval($principal_array[1][1]);
+        $final_hour = intval($principal_array[1][0]);
+        $final_day = intval($principal_array[0][2]);
+        $final_month = intval($principal_array[0][1]);
+        $final_year = intval($principal_array[0][0]);
 
 
         //Get final_date
         if($provisional_sec >= 60)
         {
             $final_sec = $provisional_sec % 60;
-            $provisional_min = intval($hour_min_sec_lastdate[1]) + truncate_($provisional_sec / 60);
+            $provisional_min = intval($principal_array[1][1]) + truncate_($provisional_sec / 60);
 
             if($provisional_min >= 60)
             {
                 $final_min = $provisional_min % 60;
-                $provisional_hour = intval($hour_min_sec_lastdate[0]) + truncate_($provisional_min / 60);
+                $provisional_hour = intval($principal_array[1][0]) + truncate_($provisional_min / 60);
 
                 if($provisional_hour >= 24)
                 {
                     $final_hour = ($provisional_hour % 24);
-                    $provisional_day = intval($year_month_day[2]) + truncate_($provisional_hour / 24);
+                    $provisional_day = intval($principal_array[0][2]) + truncate_($provisional_hour / 24);
 
-                    if(cal_days_in_month(CAL_GREGORIAN, intval($year_month_day[1]), intval($year_month_day[0])) < $provisional_day)
+                    if(cal_days_in_month(CAL_GREGORIAN, intval($principal_array[0][1]), intval($principal_array[0][0])) < $provisional_day)
                     {
-                        $final_day = $provisional_day - cal_days_in_month(CAL_GREGORIAN, intval($year_month_day[1]), intval($year_month_day[0]));
-                        $provisional_month = intval($year_month_day[1]) + 1;
+                        $final_day = $provisional_day - cal_days_in_month(CAL_GREGORIAN, intval($principal_array[0][1]), intval($principal_array[0][0]));
+                        $provisional_month = intval($principal_array[0][1]) + 1;
 
                         if(12 < $provisional_month)
                         {
                             $final_month = $provisional_month - 12;
-                            $final_year = intval($year_month_day[0]) + 1;
+                            $final_year = intval($principal_array[0][0]) + 1;
                         }
                         else
                         {
@@ -101,7 +107,8 @@
                 $final_min = $provisional_min;
             }
         }
-        echo $final_year, '-', format_to_sec(truncate_($final_month)) , '-', format_to_sec(truncate_($final_day)), ' ',format_to_sec(truncate_($final_hour)), ":", format_to_sec(truncate_($final_min)), ":", format_to_sec(truncate_($final_sec));
+
+        return ($final_year. '-'. format_to_sec(truncate_($final_month)). '-'. format_to_sec(truncate_($final_day)). ' '. format_to_sec(truncate_($final_hour)). ":". format_to_sec(truncate_($final_min)). ":". format_to_sec(truncate_($final_sec)));
     }
     
     //Facilitate Calculus
@@ -147,12 +154,12 @@
         $array_dates_decomposed = explode(' ', $date);
 
         //divide date in 3(year, month, day)
-        $year_month_day = explode('-', $array_dates_decomposed[0]);
+        $principal_array[0] = explode('-', $array_dates_decomposed[0]);
 
         //divide hour in 3 (hour, min and sec)
-        $hour_min_sec_lastdate = explode(':', $array_dates_decomposed[1]);
+        $principal_array[1] = explode(':', $array_dates_decomposed[1]);
 
-        return array($year_month_day, $hour_min_sec_lastdate);
+        return array($principal_array[0], $principal_array[1]);
     }
 
 ?>
