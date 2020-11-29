@@ -21,25 +21,36 @@
     //wait till the time finishes
     // print($row['Local_time']);
 
-    $test_var = '2020-11-31 23:45:01';
+    $test_var = '2020-11-31 23:10:01';
     print($test_var);
+    print("\r\n");
+    print(Date_adder($test_var, $time_to_repeat));
     print("\r\n");
     substarct_sec($test_var, Date_adder($test_var, $time_to_repeat));
 
-    // //rest seconds
+    //rest seconds
     function substarct_sec($datefrom, $datefor)
     {
         $numbers_datefrom = Get_numbers_of_date($datefrom);
         $numbers_datefor = Get_numbers_of_date($datefor);
 
-        $sec_datefrom = intval($numbers_datefrom[0][0]) * 3.1536 * pow(10, 7) + 
-            intval($numbers_datefrom[0][1]) * (3.1536 * pow(10, 7)) / 12 + //arreglar meses ???
+        $sec_datefrom = intval($numbers_datefrom[0][0]) * 31536000 + 
+            Get_sec_in_month($numbers_datefrom[0][1], $numbers_datefrom[0][0]) +
             intval($numbers_datefrom[0][2]) * 86400 +
-            intval($numbers_datefrom[1][0]) * 3600
-            intval($numbers_datefrom[1][1]) * 60
-            intval($numbers_datefrom[1][2]);
+            intval($numbers_datefrom[1][0]) * 3600 +
+            intval($numbers_datefrom[1][1]) * 60 +
+            intval($numbers_datefrom[1][2])
+        ;
+        
+        $sec_datefor = intval($numbers_datefor[0][0]) * 31536000 + 
+            Get_sec_in_month($numbers_datefor[0][1], $numbers_datefor[0][0]) +
+            intval($numbers_datefor[0][2]) * 86400 +
+            intval($numbers_datefor[1][0]) * 3600 +
+            intval($numbers_datefor[1][1]) * 60 +
+            intval($numbers_datefor[1][2])
+        ;
 
-        echo $sec_datefrom;
+        echo $sec_datefor - $sec_datefrom;
     }
     
     //Date Adder
@@ -160,6 +171,19 @@
         $principal_array[1] = explode(':', $array_dates_decomposed[1]);
 
         return array($principal_array[0], $principal_array[1]);
+    }
+
+    //get seconds passed in a year until a month(specific)
+    function Get_sec_in_month($month, $year)
+    {
+        $sec = 0;
+
+        for($i = 1; $i < intval($month); $i++)
+        {
+            $sec += cal_days_in_month(CAL_GREGORIAN, $i, intval($year)) * 86400;
+        }
+
+        return $sec;
     }
 
 ?>
