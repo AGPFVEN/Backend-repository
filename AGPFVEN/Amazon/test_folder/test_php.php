@@ -29,7 +29,7 @@
     substarct_sec($test_var, Date_adder($test_var, $time_to_repeat));
 
     //rest seconds
-    function substarct_sec($datefrom, $datefor)
+    function substarct_sec($datefrom, $datefor) //fix year change
     {
         $numbers_datefrom = Get_numbers_of_date($datefrom);
         $numbers_datefor = Get_numbers_of_date($datefor);
