@@ -23,4 +23,4 @@
         <a href="new_BIN_inventory.php" class="btn btn-info btn-lg btn-block">Create new BIN</a>
 
     </div>
-</div>              
+</div>
