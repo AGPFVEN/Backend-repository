@@ -12,18 +12,18 @@
         <select class="custom-select" name="from_location" id="inputGroupSelect01" wtx-context="71D597DE-4C86-4B2A-B7C5-7A5F808BCC7D">
             
             <option selected="">From...</option>
-            <option value="US">USA</option>
-            <option value="ES">SPAIN</option>
-            <option value="UK">UK</option>
+            <option value="FSNKU_USA">USA</option>
+            <option value="FSNKU_SPAIN">SPAIN</option>
+            <option value="FSNKU_UK">UK</option>
                         
         </select>
 
         <select class="custom-select" name="for_location" id="inputGroupSelect01" wtx-context="71D597DE-4C86-4B2A-B7C5-7A5F808BCC7D">
             
             <option selected="">For...</option>
-            <option value="US">USA</option>
-            <option value="ES">SPAIN</option>
-            <option value="UK">UK</option>
+            <option value="FSNKU_USA">USA</option>
+            <option value="FSNKU_SPAIN">SPAIN</option>
+            <option value="FSNKU_UK">UK</option>
                         
         </select>
         

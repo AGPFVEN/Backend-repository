@@ -3,18 +3,15 @@
     //set up db, studying consumes a lot of time
     include("includes/db.php");
 
-    $FSNKU_FOR = "FSNKU ".$_POST['for_location'];
-    $FSNKU_FROM = "FSNKU ".$_POST['from_location'];
-    $code = $_POST['this_FSNKU'];
+    $FSNKU_FOR = $_POST['for_location'];
+    $FSNKU_FROM = $_POST['from_location'];
+    $code = $_POST['Location'];
 
     //Get the Asin From
-    $query = "SELECT $FSNKU_FOR
-        FROM control_fnsku_os1 
-        WHERE $FSNKU_FROM = $code"
-    ;
+    $query = "SELECT $FSNKU_FOR FROM control_fnsku_os1 WHERE $FSNKU_FROM = '$code'" ;
     $result_time = mysqli_query($connection, $query);
 
-    print($result_time);
+    var_dump(mysqli_fetch_array($result_time));
 
     // //set up DB (for)
     // $connection = Get_DB($_POST['from_location']);
