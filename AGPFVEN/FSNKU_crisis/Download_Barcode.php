@@ -11,13 +11,12 @@
     //Get the Asin From
     $query = "SELECT Barcode_USA FROM control_fnsku_os1 WHERE FSNKU_USA = 'X000Q79PLX'";
     $result = mysqli_query($connection, $query);
-    $result_final = mysqli_fetch_array($result);
+    $result_db = mysqli_fetch_array($result);
 
-    $file = "D:\\xampp\\htdocs\\xampp\\Backend-repository\\AGPFVEN\\FSNKU_crisis\\wetransfer-686ade\\Archivo comprimido\\OS1 USA\\X000KI1JEJ_result_db.txt";
+    $file = "D:\\xampp\\htdocs\\xampp\\Backend-repository\\AGPFVEN\\FSNKU_crisis\\wetransfer-686ade\\Archivo comprimido\\OS1 USA\\X000KI1JEJ_result_db.pdf";
     $gestor = fopen($file, "w+");
-    fwrite($gestor, $result_final[0]);
+    fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
     fclose($gestor);
 
-    print($result_final[0]);
-
+    print(base64_decode($result_db["Barcode_USA"]));
 ?>

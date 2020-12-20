@@ -3,7 +3,7 @@
     include("includes/header.php");
 ?>
 
-<form action="Syncro_FSNKU.php" method="POST" class="btn btn btn-lg btn-block">
+<form action="Upload_Barcode.php" method="POST" class="btn btn btn-lg btn-block" enctype="multipart/form-data">
 
     <div class="input-group mb-2">
         
@@ -27,7 +27,7 @@
     <div class="form-group">
     
         <label for="exampleInputFile">File input</label>
-        <input type="file" id="exampleInputFile">
+        <input type="file" name="file" id="exampleInputFile">
         <p class="help-block">Poner documento aquí.</p>
 
     </div>
