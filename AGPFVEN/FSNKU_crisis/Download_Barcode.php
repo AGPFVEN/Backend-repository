@@ -18,5 +18,19 @@
     fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
     fclose($gestor);
 
-    print(base64_decode($result_db["Barcode_USA"]));
+    // header("Content-type: application/pdf");
+    // // header('Content-Disposition: inline; filename="' . $file . '"');
+    // header('Content-Transfer-Encoding: binary');
+    // header('Accept-Ranges: bytes');
+    // readfile($file);
+
+    print("KK");
 ?>
+
+<script type="text/javascript">
+
+    // alert("Hello! I am an alert box!!");
+    // setTimeout(window.print, 10000);
+    window.print();
+
+</script>
