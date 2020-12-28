@@ -26,10 +26,3 @@
 
     print("KK");
 ?>
-
-<script src="Print.js-1.5.0/src/index.js" type="module"></script>
-<script type="text/javascript">
-
-    printJS('wetransfer-686ade/Archivo comprimido/OS1 USA/X000KI1JEJ_result_db.')
-
-</script>
