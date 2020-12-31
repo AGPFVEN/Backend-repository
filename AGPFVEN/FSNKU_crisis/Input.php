@@ -14,7 +14,7 @@
             <option selected="">From...</option>
             <option value="FSNKU_USA">USA</option>
             <option value="FSNKU_SPAIN">SPAIN</option>
-            <option value="FSNKU_UK">UK</option>
+            <option value="FNSKU_UK">UK</option>
                         
         </select>
 

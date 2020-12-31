@@ -10,15 +10,20 @@
     //Get the Asin From
     $query = "SELECT $FSNKU_FOR FROM control_fnsku_os1 WHERE $FSNKU_FROM = '$code'" ;
     $result_time = mysqli_query($connection, $query);
+    $result_array = mysqli_fetch_array($result_time);
 
-    var_dump(mysqli_fetch_array($result_time));
+    var_dump($result_array[0]);
 
-    // //set up DB (for)
-    // $connection = Get_DB($_POST['from_location']);
+    //Get pdf
+    $query = "SELECT Barcode_USA FROM control_fnsku_os1 WHERE $FSNKU_FROM = '$code'";
+    $result = mysqli_query($connection, $query);
+    $result_db = mysqli_fetch_array($result);
 
-    // //Get the Asin for
-    // $query = "SELECT FROM amazon_test WHERE id = (SELECT COUNT(*) FROM amazon_test)";
-    // $result_time = mysqli_query($connection, $query);
+    $file = "D:\\xampp\\htdocs\\xampp\\Backend-repository\\AGPFVEN\\FSNKU_crisis\\wetransfer-686ade\\Archivo comprimido\\OS1 USA\\X000KI1JEJ_result_db.pdf";
+    $gestor = fopen($file, "w+");
+    fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
+    fclose($gestor);
 
-    //  https://www.youtube.com/watch?v=9GRVEdWuxmA use printer php
+    $command = escapeshellcmd('Use_printer.py'); 
+    $output = shell_exec($command);
 ?>
