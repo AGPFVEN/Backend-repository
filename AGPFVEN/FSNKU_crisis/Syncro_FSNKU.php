@@ -19,10 +19,12 @@
     $result = mysqli_query($connection, $query);
     $result_db = mysqli_fetch_array($result);
 
-    $file = "D:\\xampp\\htdocs\\xampp\\Backend-repository\\AGPFVEN\\FSNKU_crisis\\wetransfer-686ade\\Archivo comprimido\\OS1 USA\\X000KI1JEJ_result_db.pdf";
+    $file_cointains_path = fopen("File_path.txt", "r");
+    $file = fread($file_cointains_path, filesize("File_path.txt"));
     $gestor = fopen($file, "w+");
     fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
     fclose($gestor);
+    fclose($file_cointains_path);
 
     $command = escapeshellcmd('Use_printer.py'); 
     $output = shell_exec($command);
