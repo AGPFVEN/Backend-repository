@@ -14,23 +14,42 @@
     //Get the start time
     $query = "SELECT * FROM amazon_test WHERE id = (SELECT COUNT(*) FROM amazon_test)";
     $result_time = mysqli_query($connection, $query);
-    $row = mysqli_fetch_array($result_time);
 
-    //wait till the time finishes
-    echo Date_adder($row['Local_time'], $time_to_repeat).("\n\n");
-    echo substarct_sec($row['Local_time'], Date_adder($row['Local_time'], $time_to_repeat).("\n\n"));
-    sleep(substarct_sec($row['Local_time'], Date_adder($row['Local_time'], $time_to_repeat)));
-    
-    // echo date("Y-m-d H:i:s").("\n\n");
-    // echo substarct_sec(Date_adder($row['Local_time'], $time_to_repeat), date("Y-m-d H:i:s"));
+    if($result_time !== FALSE)
+    {
+        $row = mysqli_fetch_array($result_time);
+
+        //wait till the time finishes
+        echo Date_adder($row['Local_time'], $time_to_repeat).("\n\n");
+        echo substarct_sec($row['Local_time'], Date_adder($row['Local_time'], $time_to_repeat).("\n\n"));
+        sleep(substarct_sec($row['Local_time'], Date_adder($row['Local_time'], $time_to_repeat)));
+    }
+
+?>
+
+<script>
+
+    window.open(Process_controller.php, '_blank');
+
+</script>
+
+<?php
 
     while(1)
     {
-        $query = "SELECT is_cero FROM `die_process` WHERE id = 1";
-        if(mysqli_query($connection, $query) === 1)
-        {
-            die();
-        }
+        // $query = "SELECT is_cero FROM `die_process` WHERE id = 1";
+        // if(mysqli_query($connection, $query) === 1)
+        // {
+        //     die();
+        // }
+
+        $test_var = mysqli_fetch_array(mysqli_query($connection, $query));
+        $file = fopen("test_kill.txt", "w+");
+        fwrite($file, var_dump($test_var));
+        fclose($file);
+
+
+
     //     // # set up the request parameters 
     //     // $queryString = http_build_query([ 'api_key' => '757A4FBFF891445B9FEF6DE3441F190F', 'type' => 'search', 'amazon_domain' => 'amazon.com', 'search_term' => 'lc to lc fiber patch cable', 'output' => 'csv', 'customer_zipcode' => '33180', 'language' => 'en_US' ]); 
 

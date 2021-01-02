@@ -4,6 +4,6 @@
         'localhost',
         'root',
         '',
-        'amazon_agpfven'
+        'test'
     );
 ?>
