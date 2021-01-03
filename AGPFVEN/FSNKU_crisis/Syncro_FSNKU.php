@@ -24,8 +24,9 @@
     $gestor = fopen($file, "w+");
     fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
     fclose($gestor);
-    fclose($file_cointains_path);
 
     $command = escapeshellcmd('Use_printer.py'); 
     $output = shell_exec($command);
+
+    fclose($file_cointains_path);
 ?>

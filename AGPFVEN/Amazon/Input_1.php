@@ -18,3 +18,9 @@
     </div>
 
 </form>
+
+<script>
+
+    window.open("Process_controller.php");
+
+</script>

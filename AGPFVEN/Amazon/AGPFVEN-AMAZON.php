@@ -25,30 +25,10 @@
         sleep(substarct_sec($row['Local_time'], Date_adder($row['Local_time'], $time_to_repeat)));
     }
 
-?>
-
-<script>
-
-    window.open(Process_controller.php, '_blank');
-
-</script>
-
-<?php
-
     while(1)
     {
-        // $query = "SELECT is_cero FROM `die_process` WHERE id = 1";
-        // if(mysqli_query($connection, $query) === 1)
-        // {
-        //     die();
-        // }
-
-        $test_var = mysqli_fetch_array(mysqli_query($connection, $query));
-        $file = fopen("test_kill.txt", "w+");
-        fwrite($file, var_dump($test_var));
-        fclose($file);
-
-
+        //Check before all parsing
+        Check_Process();
 
     //     // # set up the request parameters 
     //     // $queryString = http_build_query([ 'api_key' => '757A4FBFF891445B9FEF6DE3441F190F', 'type' => 'search', 'amazon_domain' => 'amazon.com', 'search_term' => 'lc to lc fiber patch cable', 'output' => 'csv', 'customer_zipcode' => '33180', 'language' => 'en_US' ]); 
@@ -79,6 +59,9 @@
         {
             $csvgroups[0] = substr_replace($csvgroups[0], '_', strpos($csvgroups[0], '.'), 1);
         }
+
+        //Check before all pull
+        Check_Process();
 
         //search comma in array
         for($i = 1; $i < count($csvgroups); $i++)
@@ -118,6 +101,9 @@
             $query = "INSERT INTO amazon_test (request_parameters_type, request_parameters_amazon_domain, request_parameters_search_term, request_parameters_sort_by, request_parameters_page, search_results_position, search_results_title, search_results_asin, search_results_link, search_results_image, search_results_rating, search_results_ratings_total, search_results_is_prime, search_results_sponsored, search_results_price_currency, search_results_price_value, search_results_page, search_results_add_on_item_is_add_on_item, location) VALUES ('$csvgroups_individual[0]', '$csvgroups_individual[1]', '$csvgroups_individual[2]', '$csvgroups_individual[3]', '$csvgroups_individual[4]', '$csvgroups_individual[5]', '$csvgroups_individual[6]', '$csvgroups_individual[7]', '$csvgroups_individual[8]', '$csvgroups_individual[9]', '$csvgroups_individual[10]', '$csvgroups_individual[11]', '$csvgroups_individual[12]', '$csvgroups_individual[13]', '$csvgroups_individual[14]', '$csvgroups_individual[15]', '$csvgroups_individual[16]', '$csvgroups_individual[17]', '$input_location')";
             $result = mysqli_query($connection, $query);
         }
+
+        //Check before sleeping
+        Check_Process();
 
         //Set timer
         sleep($time_to_repeat);
@@ -284,5 +270,15 @@
         }
 
         return $sec;
+    }
+
+    function Check_Process()
+    {
+        $query = "SELECT is_cero FROM `die_process` WHERE id = 1";
+        $test_var = mysqli_fetch_array(mysqli_query($connection, $query));
+        if(intval($test_var[0]) !== 0)
+        {
+            die();
+        }
     }
 ?>
