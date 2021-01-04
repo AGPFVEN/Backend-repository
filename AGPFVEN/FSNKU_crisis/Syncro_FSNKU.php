@@ -27,9 +27,9 @@
     fclose($file_cointains_path);
 ?>
 
-<script type="text/javascript" src="Promise.min.js"></script>
-<script type="text/javascript" src="FunctionPromise.js"></script>
-<script type="text/javascript" src="pypyjs.js"></script>
+<script type="text/javascript" src="Promise.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="FunctionPromise.js" charset="utf-8"></script>
+<script type="text/javascript" src="pypyjs.js" charset="utf-8"></script>
 <script type="text/javascript">
 
     pypyjs.exec("print(\"hillaalalal\")");
