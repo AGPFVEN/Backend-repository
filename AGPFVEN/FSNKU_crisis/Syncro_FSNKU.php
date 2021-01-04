@@ -24,9 +24,15 @@
     $gestor = fopen($file, "w+");
     fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
     fclose($gestor);
-
-    $command = escapeshellcmd('Use_printer.py'); 
-    $output = shell_exec($command);
-
     fclose($file_cointains_path);
 ?>
+
+<script type="text/javascript" src="Promise.min.js"></script>
+<script type="text/javascript" src="FunctionPromise.js"></script>
+<script type="text/javascript" src="pypyjs.js"></script>
+<script type="text/javascript">
+
+    pypyjs.exec("print(\"hillaalalal\")");
+    pypyjs.execfile("/Use_printer.py");
+
+</script>
