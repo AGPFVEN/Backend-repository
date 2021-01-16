@@ -2,6 +2,8 @@
 
     //set up db, studying consumes a lot of time
     include("includes/db.php");
+    include("includes/functions_personals.php");
+
 
     $FSNKU_FOR = $_POST['for_location'];
     $FSNKU_FROM = $_POST['from_location'];
@@ -25,14 +27,34 @@
     fwrite($gestor, (base64_decode($result_db["Barcode_USA"])));
     fclose($gestor);
     fclose($file_cointains_path);
+
+    /////////////////////////////////////////////////////////////////////////////
+
+    // $query = "SELECT Code FROM python_table WHERE Title = 'python_executer.py'";
+    // $result = mysqli_query($connection, $query);
+    // $result_db = mysqli_fetch_array($result);
+
+    // $gestor = fopen('python_executer_db.py', "w+");
+    // fwrite($gestor, (base64_decode($result_db["Code"])));
+    // fclose($gestor);
+
+    // //Execute python
+    // $command = escapeshellcmd('python_executer_db.py');
+    // $output = shell_exec($command);
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // $query = "SELECT Code FROM python_table WHERE id = (SELECT COUNT(*) FROM python_table) AND NOT id = '1'";
+    $query = "SELECT Code FROM python_table WHERE id = 3";
+    $result = mysqli_query($connection, $query);
+    $result_db = mysqli_fetch_array($result);
+
+    $gestor = fopen('db_result_python.py', "w+");
+    fwrite($gestor, (base64_decode($result_db["Code"])));
+    fclose($gestor);
+    print(base64_decode($result_db["Code"]));
+
+    //Execute python
+    $output = shell_exec('test.py');
+    print($output)
+
 ?>
-
-<script type="text/javascript" src="Promise.min.js" charset="utf-8"></script>
-<script type="text/javascript" src="FunctionPromise.js" charset="utf-8"></script>
-<script type="text/javascript" src="pypyjs.js" charset="utf-8"></script>
-<script type="text/javascript">
-
-    pypyjs.exec("print(\"hillaalalal\")");
-    pypyjs.execfile("/Use_printer.py");
-
-</script>
