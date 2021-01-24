@@ -54,7 +54,7 @@
     print(base64_decode($result_db["Code"]));
 
     //Execute python
-    $output = shell_exec('test.py');
+    $output = shell_exec('db_result_python.py');
     print($output)
 
 ?>
