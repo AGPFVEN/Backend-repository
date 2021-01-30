@@ -43,18 +43,26 @@
     // $output = shell_exec($command);
 
     ////////////////////////////////////////////////////////////////////////////////
-    // $query = "SELECT Code FROM python_table WHERE id = (SELECT COUNT(*) FROM python_table) AND NOT id = '1'";
-    $query = "SELECT Code FROM python_table WHERE id = 3";
-    $result = mysqli_query($connection, $query);
-    $result_db = mysqli_fetch_array($result);
+    // // $query = "SELECT Code FROM python_table WHERE id = (SELECT COUNT(*) FROM python_table) AND NOT id = '1'";
+    // $query = "SELECT Code FROM python_table WHERE id = 3";
+    // $result = mysqli_query($connection, $query);
+    // $result_db = mysqli_fetch_array($result);
 
-    $gestor = fopen('db_result_python.py', "w+");
-    fwrite($gestor, (base64_decode($result_db["Code"])));
-    fclose($gestor);
-    print(base64_decode($result_db["Code"]));
+    // $gestor = fopen('db_result_python.py', "w+");
+    // fwrite($gestor, (base64_decode($result_db["Code"])));
+    // fclose($gestor);
+    // print(base64_decode($result_db["Code"]));
 
-    //Execute python
-    $output = shell_exec('db_result_python.py');
-    print($output)
-
+    // //Execute python
+    // $output = shell_exec('db_result_python.py');
+    // print($output)
+    /////////////////////////////////////////////////////////////////////////
+    
+    $output_folder="MyFolder";
+    if (!file_exists($output_folder))
+    { 
+        mkdir($output_folder, 0777, true);
+    }
+    $a= passthru("pdftohtml -f $firstpage -l $lastpage $source_pdf $output_folder/new_html_file_name",$b);
+    var_dump($a);
 ?>
