@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AGPFVEN</title>
+    <title>FSNKU Translator</title>
 
     <!-- BOOSTRAP 4 -->
     <!-- CSS only -->
@@ -22,7 +22,7 @@
 <body>
 <nav class = "navbar navbar-dark bg-dark">
 <div class = "container">
-<a href = "index.php" class="navbar-brand">AGPFVEN Scanner (PHP MySQL)</a>
+<a href = "index.php" class="navbar-brand"> FSNKU Translator</a>
 
 </div>
 </nav>

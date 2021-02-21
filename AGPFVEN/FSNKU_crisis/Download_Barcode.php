@@ -2,14 +2,15 @@
     //Includes
     include("includes/header.php");
 
-    //set up db, studying consumes a lot of time
     include("includes/db.php");
 
     include("includes/functions_personals.php");
 
+    include("includes/rows_info.php");
+
 
     //Get the Asin From
-    $query = "SELECT Barcode_USA FROM control_fnsku_os1 WHERE FSNKU_USA = 'X000Q79PLX'";
+    $query = "SELECT $pdf_usa FROM $table WHERE FSNKU_USA = 'X000Q79PLX'";
     $result = mysqli_query($connection, $query);
     $result_db = mysqli_fetch_array($result);
 
